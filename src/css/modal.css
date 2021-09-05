@@ -1,0 +1,103 @@
+/* 
+  ##Device = Laptops, Desktops
+  ##Screen = B/w 1025px to 1280px
+*/
+@media (min-width: 1025px) {
+  .modalSend {
+    /* padding: 10px; */
+    width: 100%;
+    /* background-color: blue; */
+    display: flex;
+    justify-content: center;
+    background-color: rgb(0, 0, 0); /* Fallback color */
+    background-color: rgba(0, 0, 0, 0.6); /* Black w/ opacity */
+    /* background-color: #fff; */
+  }
+
+  .modalContent {
+    padding-top: 20%;
+    margin-bottom: 20%;
+    margin: 10px;
+    /* background-color: blue; */
+  }
+
+  .instagram {
+    display: inline-block;
+    width: 5px;
+    height: 5px;
+    text-align: center;
+    border-radius: 40px;
+    color: #fff;
+    font-size: 220px;
+    line-height: 250px;
+    vertical-align: middle;
+    background: #d6249f;
+    background: radial-gradient(
+      circle at 30% 107%,
+      #fdf497 0%,
+      #fdf497 5%,
+      #fd5949 45%,
+      #d6249f 60%,
+      #285aeb 90%
+    );
+    box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.25);
+  }
+
+  .facebook-icon {
+    background: #3b5998;
+    text-indent: -999em;
+    width: 50px;
+    height: 50px;
+    border-radius: 5px;
+    position: relative;
+    overflow: hidden;
+    border: 15px solid #3b5998;
+    border-bottom: 0;
+    display: inline-block;
+  }
+
+  .whatsapp {
+    background-color: #25d366;
+    color: #FFF
+  }
+
+  .close {
+    color: #aaaaaa;
+    /* float: right; */
+    flex-direction: row;
+    padding-left: 500px;
+    font-size: 28px;
+    font-weight: bold;
+  }
+
+  .close:hover,
+  .close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+  }
+}
+
+/* 
+  ##Device = Most of the Smartphones Mobiles (Portrait)
+  ##Screen = B/w 320px to 479px
+*/
+@media (max-width: 480px) {
+  .modalSend {
+    padding: 50px;
+    background-color: red;
+  }
+  .close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+
+  .close:hover,
+  .close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+  }
+}

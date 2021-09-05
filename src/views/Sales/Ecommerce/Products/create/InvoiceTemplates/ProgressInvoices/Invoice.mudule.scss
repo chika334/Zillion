@@ -1,0 +1,119 @@
+@import "Invoice";
+
+.invoices {
+  max-width: $invoiceMaxWidth;
+  margin: ($rhythm * 2) auto;
+  border: 1px solid $tableBorderColor;
+  padding: 2 * $rhythm;
+  border-radius: $borderRadius;
+  background: $bgColor;
+}
+
+.brands {
+  margin-bottom: $rhythm * 2;
+  .logos {
+    display: inline-block;
+    border-radius: $borderRadius;
+  }
+}
+
+.addressess {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  text-align: left;
+  .froms,
+  .tos {
+    padding: $rhythm;
+    border-radius: $borderRadius;
+    width: 100%;
+    max-width: $invoiceMaxWidth / 3;
+  }
+  .froms {
+    display: block;
+    font-style: normal;
+    margin-right: $rhythm / 2;
+    background: #efefef;
+    border: 1px solid $tableBorderColor;
+  }
+  .tos {
+    display: block;
+    margin-left: $rhythm / 2;
+    padding: 0;
+    .values {
+      text-align: right;
+    }
+  }
+  .addresss {
+    display: block;
+  }
+}
+
+.valueTables {
+  margin: 0 0 0 auto;
+  border: 1px solid $tableBorderColor;
+  border-radius: $borderRadius;
+  overflow: hidden;
+  width: 100%;
+  min-width: $invoiceMaxWidth / 3;
+  max-width: $invoiceMaxWidth / 3;
+  & > .rows {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    border-bottom: 1px solid $tableBorderColor;
+    &:last-of-type {
+      border-bottom: none;
+    }
+    & > div {
+      padding: ($rhythm/2);
+    }
+    & > .labels {
+      @extend %flex-center;
+      justify-content: flex-start;
+      font-weight: bold;
+    }
+  }
+}
+
+.totalContainers {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+}
+
+.pays {
+  display: flex;
+  justify-content: flex-end;
+  padding: ($rhythm * 1) 0 ($rhythm) $rhythm;
+}
+
+button.payNows {
+  display: block;
+  padding: ($rhythm) ($rhythm * 2);
+  background: lightyellow;
+  border-radius: $borderRadius;
+  border: 1px solid #444;
+}
+
+.footers {
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: space-between;
+  align-items: center;
+  .comments {
+    padding: $rhythm;
+    border-radius: $borderRadius;
+    h4,
+    h5 {
+      margin-top: 0;
+      margin-bottom: $rhythm / 2;
+    }
+  }
+  .comments {
+    text-align: left;
+    background: #eee;
+  }
+  .closing {
+    padding-top: $rhythm;
+  }
+}

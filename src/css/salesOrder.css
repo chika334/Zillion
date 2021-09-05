@@ -1,0 +1,73 @@
+/* 
+  ##Device = Desktops
+  ##Screen = 1281px to higher resolution desktops
+*/
+
+@media (min-width: 1281px) {
+  /* CSS */
+}
+
+/* 
+  ##Device = Laptops, Desktops
+  ##Screen = B/w 1025px to 1280px
+*/
+@media (min-width: 1025px) {
+  /* CSS */
+  .salesOrderCard {
+    background-color: #fff;
+  }
+
+  .cartIcon {
+    font-size: 50%;
+  }
+
+  .newBody {
+    display: inline-flex;
+  }
+}
+
+/* 
+  ##Device = Tablets, Ipads (portrait)
+  ##Screen = 1024px
+*/
+
+@media (max-width: 1024px) {
+  /* CSS */
+}
+
+/* 
+  ##Device = Tablets, Ipads (landscape)
+  ##Screen = B/w 768px to 1024px
+*/
+
+@media (max-width: 1024px) and (orientation: landscape) {
+  /* CSS */
+}
+
+/* 
+  ##Device = Low Resolution Tablets, Mobiles (Landscape)
+  ##Screen = B/w 481px to 767px
+*/
+
+@media (max-width: 767px) {
+  /* CSS */
+}
+
+/* 
+  ##Device = Most of the Smartphones Mobiles (Portrait)
+  ##Screen = B/w 320px to 479px
+*/
+@media (max-width: 480px) {
+  /* CSS */
+  .cartIcon {
+    font-size: 100%;
+  }
+
+  .salesOrderCard {
+    background-color: #fff;
+  }
+
+  .iconDesign {
+    margin-top: 50%;
+  }
+}

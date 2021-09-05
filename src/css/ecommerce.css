@@ -1,0 +1,289 @@
+/* 
+  ##Device = Desktops
+  ##Screen = 1281px to higher resolution desktops
+*/
+
+@media (min-width: 1281px) {
+  /* CSS */
+}
+
+/* 
+  ##Device = Laptops, Desktops
+  ##Screen = B/w 1025px to 1280px
+*/
+@media (min-width: 1025px) {
+  /* CSS */
+  .displays {
+    /* background-color: blue; */
+    width: 100%;
+    display: inline-flex;
+  }
+
+  .allnewsDetails {
+    /* width: 100%; */
+    display: inline-flex;
+  }
+
+  .searchInputs {
+    width: 73%;
+    /* background-color: blue; */
+  }
+
+  .searchPapers {
+    /* background-color: blueviolet; */
+    width: 100%;
+    margin-left: 450px;
+  }
+
+  .filterDetail {
+    /* background-color: brown; */
+    margin-top: 20px;
+    /* position: relative; */
+    margin-left: 61%;
+  }
+
+  .hrbodys {
+    position: relative;
+    /* left: 0%; */
+  }
+  .hrLines {
+    margin-right: 20px;
+    width: 350px;
+  }
+
+  .Ecommercemedia {
+    width: 28%;
+    float: left;
+  }
+
+  .modalCardHeight {
+    height: 35%;
+  }
+
+  .modalCardHeight:hover {
+    border: 2px solid orange;
+    cursor: pointer;
+  }
+
+  .cardsDetail {
+    border-radius: 5%;
+  }
+
+  .cardsDetail:hover {
+    cursor: pointer;
+  }
+
+  .underLineText {
+    border-bottom: 2px solid #000;
+  }
+
+  .cardHeight {
+    height: 100%;
+    background-color: blue;
+  }
+
+  .ecommerceArrange {
+    margin-left: 50px;
+    text-align: left;
+  }
+
+  .displayDropButton {
+    justify-content: space-between;
+    width: 300px;
+  }
+
+  .dropButtons {
+    background-color: transparent;
+    background-repeat: no-repeat;
+    border: none;
+    cursor: pointer;
+    margin-bottom: 0;
+    color: #fff;
+    font-size: 20px;
+    padding-top: 5%;
+    margin-left: 33px;
+    padding-bottom: 0;
+    float: left;
+  }
+}
+
+/* 
+  ##Device = Tablets, Ipads (portrait)
+  ##Screen = 1024px
+*/
+
+@media (max-width: 1024px) {
+  /* CSS */
+  .displays {
+    /* background-color: blue; */
+    /* width: 50%; */
+    display: inline-flex;
+  }
+
+  .allnewsDetails {
+    width: 100%;
+    display: inline-flex;
+  }
+
+  .searchInputs {
+    width: 73%;
+    /* background-color: blue; */
+  }
+
+  .searchPapers {
+    /* background-color: blueviolet; */
+    width: 50%;
+    margin-left: 86px;
+  }
+
+  .filterDetail {
+    /* background-color: brown; */
+    margin-top: 20px;
+    /* position: relative; */
+    margin-left: 61%;
+  }
+
+  .hrbodys {
+    position: relative;
+    /* left: 0%; */
+  }
+  .hrLines {
+    margin-right: 20px;
+    width: 350px;
+  }
+
+  .Ecommercemedia {
+    height: 50px;
+    width: 32%;
+    float: left;
+    /* padding: 120px 100px 30px 30px; */
+  }
+
+  .ecommerceArrange {
+    margin-left: 20%;
+    text-align: left;
+  }
+
+  .displayDropButton {
+    justify-content: space-between;
+    /* width: 50px; */
+  }
+
+  .dropButtons {
+    background-color: transparent;
+    background-repeat: no-repeat;
+    border: none;
+    cursor: pointer;
+    margin-bottom: 0;
+    color: #fff;
+    font-size: 20px;
+    padding-top: 5%;
+    margin-left: 15px;
+    padding-bottom: 0;
+    float: left;
+  }
+}
+
+/* 
+  ##Device = Tablets, Ipads (landscape)
+  ##Screen = B/w 768px to 1024px
+*/
+
+@media (max-width: 1024px) and (orientation: landscape) {
+  /* CSS */
+}
+
+/* 
+  ##Device = Low Resolution Tablets, Mobiles (Landscape)
+  ##Screen = B/w 481px to 767px
+*/
+
+@media (max-width: 767px) {
+  /* CSS */
+}
+
+/* 
+  ##Device = Most of the Smartphones Mobiles (Portrait)
+  ##Screen = B/w 320px to 479px
+*/
+@media (max-width: 480px) {
+  /* CSS */
+  .displays {
+    /* background-color: blue; */
+    /* width: 50%; */
+    display: inline-flex;
+  }
+
+  .allnewsDetails {
+    /* background-color: brown; */
+    width: 88%;
+    display: inline-flex;
+  }
+
+  .searchInputs {
+    width: 73%;
+    /* background-color: blue; */
+  }
+
+  .searchPapers {
+    /* background-color: blueviolet; */
+    /* width: 50%; */
+    margin-left: 20px;
+  }
+
+  .filterDetail {
+    /* background-color: brown; */
+    margin-top: 150px;
+    position: relative;
+    margin-left: 0%;
+  }
+
+  .hrbodys {
+    position: relative;
+    /* left: 0%; */
+  }
+  .hrLines {
+    /* margin-right: 20px; */
+    width: 250px;
+  }
+
+  .Ecommercemedia {
+    width: 100px;
+    float: left;
+  }
+
+  .ecommerceArrange {
+    margin-left: 50px;
+    text-align: left;
+  }
+
+  .displayDropButton {
+    justify-content: space-between;
+    /* width: 50px; */
+  }
+
+  .dropButtons {
+    background-color: transparent;
+    background-repeat: no-repeat;
+    border: none;
+    cursor: pointer;
+    margin-bottom: 0;
+    color: #fff;
+    font-size: 20px;
+    padding-top: 5%;
+    margin-left: 30px;
+    padding-bottom: 0;
+    float: left;
+  }
+
+  .box {
+    /* width: 100%; */
+    /* height: 100%; */
+    position: absolute;
+  }
+
+  .overlay {
+    margin-top: 100px;
+    width: 100%;
+  }
+}

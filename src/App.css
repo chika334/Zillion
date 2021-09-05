@@ -1,0 +1,482 @@
+.shadow-md {
+  background-color: rgba(0, 0, 0, 0.5);
+  overflow-y: auto;
+  -webkit-box-shadow: 0px 0px 50px -35px rgb(0 0 0 / 40%);
+  box-shadow: 0px 0px 50px -35px rgb(0 0 0 / 40%);
+}
+
+.list:hover {
+  background-color: aqua;
+}
+
+.login-Card {
+  margin-left: 25%;
+  margin-right: 25%;
+}
+
+@media only screen and (max-width: 600px) {
+  .login-Card {
+    /* background-color: rgb(185, 192, 194); */
+    margin: 0;
+  }
+
+  /* .cardx {
+    background-color: green;
+  } */
+}
+
+.cardx {
+  background-color: green;
+  padding: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Float four columns side by side */
+.column {
+  float: left;
+  width: 20%;
+  /* padding: 0 10px; */
+  margin: 20px;
+}
+
+/* Remove extra left and right margins, due to padding in columns */
+.row {
+  margin: 0 -5px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Style the counter cards */
+.cardp {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); /* this adds the "card" effect */
+  padding: 16px;
+  text-align: center;
+  background-color: #f1f1f1;
+}
+
+/* Responsive columns - one column layout (vertical) on small screens */
+@media screen and (max-width: 600px) {
+  .column {
+    width: 100%;
+    /* display: block; */
+    margin-bottom: 20px;
+  }
+}
+
+@media (max-width: 1099px) {
+  .nav-remove {
+    display: none;
+    background-color: #fff;
+  }
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.verifynumber input[type="number"] {
+  -moz-appearance: textfield;
+  /* background-color: green; */
+  width: 90%;
+  margin: 4%;
+}
+
+/* error */
+.errorMessage {
+  color: red;
+  font-size: 0.75em;
+  display: relative;
+}
+
+.allnew {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.allnew > div {
+  margin: 5px;
+  padding: 2px;
+  width: 50%;
+}
+
+@media (min-width: 600px) {
+  .allnew {
+    display: flex;
+    flex-wrap: nowrap;
+  }
+
+  .allnew > div {
+    padding: 10px;
+    width: 50%;
+  }
+}
+
+@media (max-width: 599px) {
+  .allnew {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .allnew > div {
+    padding: 10px;
+    /*width: 50%;*/
+  }
+}
+
+/* start navbar */
+/*Desktop View*/
+.header {
+  display: flex;
+  /* background: linear-gradient(#6616fc); */
+  justify-content: space-between;
+  align-items: center;
+  padding: 0px 40px;
+  height: 90px;
+}
+.logo-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+.logo-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.logo {
+  width: 45px;
+  height: 45px;
+}
+.nav-options {
+  padding-left: 250px;
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  grid-gap: 50px;
+  list-style-type: none;
+}
+.mobile-option {
+  display: none;
+}
+
+.option :hover {
+  color: white;
+}
+.signin-up {
+  display: flex;
+  padding: 0px 5px;
+  list-style-type: none;
+}
+.sign-in {
+  padding-right: 50px;
+  align-self: center;
+}
+.sign-in :hover {
+  color: white;
+}
+.signup-btn {
+  padding: 10px 10px;
+  height: 2.4rem;
+  border-radius: 3px;
+  background: rgb(222, 9, 241);
+  color: white;
+  cursor: pointer;
+  align-items: center;
+}
+.mobile-menu {
+  display: none;
+}
+@media (max-width: 648px) {
+  /*Mobile View */
+  .header {
+    padding: 0px 10px;
+  }
+  .logo {
+    width: 45px;
+    height: 45px;
+  }
+  .nav-options {
+    display: flex;
+    width: 100%;
+    height: 350px;
+    position: absolute;
+    top: 80px;
+    left: -100%;
+    opacity: 0;
+    transition: all 0.5s ease;
+    flex-direction: column;
+    list-style-type: none;
+    grid-gap: 0px;
+  }
+  .nav-options.active {
+    /* background: #9899d1; */
+    background: #7a7b97 !important;
+    left: 0;
+    opacity: 1;
+    transition: all 0.5s ease;
+    /* z-index: 1; */
+    z-index: 1000;
+    height: auto;
+    align-content: center;
+    padding-left: 0px;
+  }
+
+  .menu-icon {
+    width: 45px;
+    height: 45px;
+  }
+  .option {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 10vw;
+    padding: 30px 0px;
+  }
+  .sign-up {
+    background: rgb(222, 9, 241);
+    border-radius: 3px;
+    color: white;
+    padding: 20px 0px;
+    width: 80%;
+    align-self: center;
+    border-radius: 3px;
+  }
+
+  .signin-up {
+    display: none;
+  }
+}
+.mobile-menu {
+  display: block;
+}
+
+/* end navbar */
+@media only screen and (max-width: 600px) {
+  .removeButton {
+    display: none;
+  }
+}
+
+/* nice */
+.dropbtn {
+  background-color: #04aa6d;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {
+  background-color: #ddd;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.dropdown:hover .dropbtn {
+  background-color: #3e8e41;
+}
+
+.allnewdip {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.allnewdip > div {
+  /* margin: 5px;
+  padding: 2px;
+  width: 50%; */
+}
+
+.activeButton {
+  background-color: blue;
+}
+
+#mySidenav a {
+  position: absolute;
+  right: -60px;
+  transition: 0.3s;
+  padding: 15px;
+  width: 100px;
+  text-decoration: none;
+  font-size: 20px;
+  color: white;
+  border-radius: 0 5px 5px 0;
+  margin-top: 20%;
+}
+
+#mySidenav a:hover {
+  right: 0;
+}
+
+#about {
+  top: 20px;
+  background-color: #04aa6d;
+}
+
+#blog {
+  top: 80px;
+  background-color: #2196f3;
+}
+
+#projects {
+  top: 140px;
+  background-color: #f44336;
+}
+
+#contact {
+  top: 200px;
+  background-color: #555;
+}
+
+.vl {
+  border-left: 2px solid #000;
+  height: 400px;
+}
+
+.cardSize {
+  width: 30%;
+}
+
+.allnewLocation {
+  display: flex;
+  justify-content: center;
+  /* flex-wrap: wrap; */
+}
+
+.allnewLocation > div {
+  /* margin: 5px; */
+  /* padding: 2px; */
+  width: 500%;
+  margin-bottom: 10px;
+  /* background-color: #04aa6d; */
+}
+
+.addressShow {
+  margin-left: 20px;
+  color: skyblue;
+}
+
+.allnewDoor {
+  display: flex;
+  justify-content: center;
+  flex-wrap: nowrap;
+  /* background-color: yellow; */
+}
+
+.allnewDoor > div {
+  /* margin: 5px; */
+  /* padding: 2px; */
+  width: 500%;
+  margin-bottom: 10px;
+  /* background-color: #04aa6d; */
+}
+
+.validIcon {
+  position: relative;
+  display: flex;
+  /* left: 10%; */
+  justify-content: flex-end;
+}
+
+.scrollingCard {
+  display: grid;
+  width: auto;
+  grid-gap: 1rem;
+  grid-template-columns: repeat(auto-fill, minmax(20rem, 20rem));
+  grid-auto-flow: column;
+  overflow-x: auto;
+}
+
+@media (max-width: 480px) {
+  .allnewLocation {
+    display: flex;
+    justify-content: center;
+  }
+
+  .allnewLocation > div {
+    /* padding: 10px; */
+    width: 400%;
+    /* background-color: red; */
+  }
+
+  .addressShow {
+    margin-left: 40px;
+    color: skyblue;
+  }
+
+  .allnewDoor {
+    display: flex;
+    flex-wrap: wrap;
+    /* justify-content: center; */
+  }
+
+  .allnewDoor > div {
+    /* margin-right: 50px; */
+  }
+}
+
+.cardPay {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5);
+  transition: 0.3s;
+  background-color: #f1f1f1;
+  height: 30vh;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+.cardPay:hover {
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+}
+
+.containerPay {
+  /* padding: 2px 16px; */
+}
+
+table .tableReceipt {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.tableReceipt td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+.tableReceipt tr:nth-child(even) {
+  background-color: #dddddd;
+}

@@ -1,0 +1,64 @@
+.textSize {
+  width: 32%;
+}
+
+.legalSize {
+  width: 32%;
+}
+
+.allnewText {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.allnewText > div {
+  margin: 5px;
+  padding: 2px;
+  width: 80%;
+}
+
+.acountdetailsText {
+  width: 10%;
+}
+
+.otherSize {
+  width: 80%;
+}
+
+.accountText {
+  width: 50%;
+}
+
+.removedBorder {
+  width: 80px;
+  border-top-style: hidden;
+  border-right-style: hidden;
+  border-left-style: hidden;
+  border-bottom-style: groove;
+  background-color: rgb(226, 226, 226);
+}
+
+.removeSelectBorder {
+  border-top-style: hidden;
+  border-right-style: hidden;
+  border-left-style: hidden;
+  border-bottom-style: groove;
+  background-color: rgb(226, 226, 226);
+}
+
+.tableInput {
+  width: 20px;
+  border-top-style: hidden;
+  border-right-style: hidden;
+  border-left-style: hidden;
+  border-bottom-style: groove;
+  background-color: rgb(226, 226, 226);
+}
+
+.disabledInput:disabled {
+  background: #dddddd;
+}
+
+.disabledLabel:disabled+label {
+  color: #ccc;
+}

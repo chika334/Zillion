@@ -1,0 +1,240 @@
+/* 
+  ##Device = Desktops
+  ##Screen = 1281px to higher resolution desktops
+*/
+
+@media (min-width: 1281px) {
+  /* CSS */
+}
+
+/* 
+  ##Device = Laptops, Desktops
+  ##Screen = B/w 1025px to 1280px
+*/
+@media (min-width: 1025px) {
+  /* CSS */
+  /* .paddingContainer {
+    padding: 20px;
+    margin-top: 17px;
+  } */
+
+  .allnewsDetail {
+    width: 100%;
+    display: inline-flex;
+  }
+
+  .searchInput {
+    width: 250px;
+  }
+
+  .searchPaper {
+    /* width: 200px; */
+    margin-left: 430px;
+  }
+
+  .columns {
+    float: left;
+    width: 20%;
+    /* margin-top: 20px; */
+    margin-right: 70px;
+    margin-left: 40px;
+  }
+
+  .media {
+    /* width: 400px; */
+    height: 80px;
+    width: 35%;
+    float: left;
+  }
+
+  .detailArrange {
+    margin-left: 100px;
+    text-align: left;
+  }
+
+  .filterDetails {
+    margin-top: 15px;
+    margin-left: 75%;
+  }
+
+  .hrbody {
+    position: relative;
+    left: 0%;
+  }
+  .hrLine {
+    margin-right: 0px;
+    width: 380px;
+  }
+}
+
+/* 
+  ##Device = Tablets, Ipads (portrait)
+  ##Screen = 1024px
+*/
+
+@media (max-width: 1024px) {
+  /* CSS */
+  /* .paddingContainer {
+    padding: 10px;
+    margin-top: 17px;
+  } */
+
+  .allnewsDetail {
+    width: 100%;
+    display: inline-flex;
+  }
+
+  .searchInput {
+    width: 50px;
+  }
+
+  .searchPaper {
+    width: 300px;
+    margin-left: 95px;
+  }
+
+  .columns {
+    float: left;
+    width: 30%;
+    /* padding: 0 10px; */
+    margin-top: 20px;
+    margin-right: 60px;
+    margin-left: 40px;
+  }
+
+  .media {
+    height: 110px;
+    width: 48%;
+    float: left;
+    /* padding: 120px 100px 30px 30px; */
+  }
+
+  .detailArrange {
+    margin-left: 30%;
+    text-align: left;
+  }
+
+  .filterDetails {
+    margin-top: 15px;
+    margin-left: 63%;
+  }
+
+  .hrbody {
+    position: relative;
+    left: 0%;
+  }
+  .hrLine {
+    margin-right: 20px;
+    width: 380px;
+  }
+}
+
+/* 
+  ##Device = Tablets, Ipads (landscape)
+  ##Screen = B/w 768px to 1024px
+*/
+
+@media (max-width: 1024px) and (orientation: landscape) {
+  /* CSS */
+  /* .paddingContainer {
+    padding: 5px;
+    margin-top: 17px;
+  } */
+
+  .searchInput {
+    width: 50px;
+  }
+
+  .searchPaper {
+    width: 300px;
+    margin-left: 95px;
+  }
+}
+
+/* 
+  ##Device = Low Resolution Tablets, Mobiles (Landscape)
+  ##Screen = B/w 481px to 767px
+*/
+
+@media (max-width: 767px) {
+  /* CSS */
+  /* .paddingContainer {
+    padding: 10px;
+    margin-top: 17px;
+  } */
+}
+
+/* 
+  ##Device = Most of the Smartphones Mobiles (Portrait)
+  ##Screen = B/w 320px to 479px
+*/
+@media (max-width: 480px) {
+  /* CSS */
+  .display {
+    width: 290px;
+    height: 150px;
+    position: relative;
+    margin: 25px;
+  }
+
+  .box {
+    width: 100%;
+    /* height: 100%; */
+    position: absolute;
+  }
+
+  .overlay {
+    margin-top: 100px;
+    width: 100%;
+  }
+
+  .allnewsDetail {
+    width: 100%;
+    display: inline-flex;
+  }
+
+  .searchInput {
+    width: 100px;
+  }
+
+  .searchPaper {
+    width: 200px;
+    margin-left: 0px;
+  }
+
+
+  .columns {
+    float: left;
+    width: 100%;
+    margin: 2px;
+  }
+
+  .media {
+    /* background-color: blueviolet; */
+    /* height: 20%; */
+    width: 150px;
+    float: left;
+    /* height: 10px; */
+    /* display: inline; */
+  }
+
+  .detailArrange {
+    margin-left: 160px;
+    text-align: left;
+  }
+
+
+  .filterDetails {
+    margin-top: 15px;
+    margin-left: 5%;
+  }
+
+  .hrbody {
+    position: relative;
+    left: 0;
+  }
+
+  .hrLine {
+    width: 200px;
+  }
+}

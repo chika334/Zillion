@@ -12,7 +12,7 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 });
 
 export default function AlertDialogSlide(props) {
-  console.log(props);
+  // console.log(props);
   return (
     <div>
       {/* <Button variant="outlined" color="primary" onClick={handleClickOpen}>

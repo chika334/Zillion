@@ -84,6 +84,8 @@ import EcommercePaymentMethod from "./views/Sales/Ecommerce/advert/create/Ecomme
 // crm
 import CRM from "./views/CRM";
 import CRMCreateNew from "./views/CRM/createNew";
+import Contact from "./views/CRM/Contact";
+// import LeadQualification from "./views/CRM/Company/LeadQualification";
 
 // company
 import CompanyNavbar from "./views/Company/navbar";
@@ -281,9 +283,10 @@ const defaultContainer = () => (
             <Route exact path="/sales/crm" component={CRM} />
             <Route
               exact
-              path="/crm/qaulifying-leads"
+              path="/sales/crm/qaulifying-leads"
               component={CRMCreateNew}
             />
+            <Route exact path="/sales/crm/contact" component={Contact} />
 
             {/*<Route
               exact

@@ -5,6 +5,7 @@ import loading from "./loading";
 import allUser from "./allUser";
 import saveCss from "./saveCSSred";
 import invoiceCal from "./invoiceCal";
+import customer from "./customer.js";
 
 export default combineReducers({
   authUser,
@@ -13,4 +14,5 @@ export default combineReducers({
   loading,
   saveCss,
   invoiceCal,
+  customer,
 });

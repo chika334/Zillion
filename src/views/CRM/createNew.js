@@ -2,182 +2,52 @@ import React from "react";
 // import AllRFP from "./AllRFP";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import NameandSearchInput from "../NameandSearchInput";
-import Filter from "../filter";
+import Filter from "./Filter";
 import "../../css/sales.css";
-import { Button, Dialog, Card } from "@material-ui/core";
-import Table from "../../components/Table";
+import {
+  Button,
+  Dialog,
+  Card,
+  Typography,
+  DialogActions,
+  DialogContent,
+  DialogTitle,
+} from "@material-ui/core";
+import company from "../../css/images/company.jpg";
 import "../../css/table.scss";
 import Slide from "@material-ui/core/Slide";
 import { withRouter, useHistory } from "react-router-dom";
 import FirstRadio from "./firstRadio";
 import SecondRadio from "./secondRadio";
 import ProfileImage from "../../css/images/downloadProfile.png";
+import SearchIpnut from "./SearchInput";
+import "./createNew.css";
+import { useDispatch, connect } from "react-redux";
+import prfile from "../../css/images/prfile.png";
+import mark from "../../css/images/mark.png";
+import CreateNewTable from "./createNewTable";
+import CrmComtactModal from "./CrmComtactModal";
+import Company from "./Company/Index";
+import Individual from "./Individual/Index";
+import { getCustomer } from "../../_action/Constumer";
+import LeadForm from "./LeadForm";
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-const driversData = [
-  {
-    number: 44,
-    name: "Lewis Hamilton",
-    team: "Mercedes",
-    country: "United Kingdom",
-    dob: "07/01/1985",
-    placeOfBirth: "Stevenage, England",
-  },
-  {
-    number: 77,
-    name: "Valtteri Bottas",
-    team: "Mercedes",
-    country: "Finland",
-    dob: "28/08/1989",
-    placeOfBirth: "Nastola, Finland",
-  },
-  {
-    number: 5,
-    name: "Sebastian Vettel",
-    team: "Ferrari",
-    country: "Germany",
-    dob: "03/07/1987",
-    placeOfBirth: "Heppenheim, Germany",
-  },
-  {
-    number: 16,
-    name: "Charles Leclerc",
-    team: "Ferrari",
-    country: "Monaco",
-    dob: "16/10/1997",
-    placeOfBirth: "Monte Carlo, Monaco",
-  },
-  {
-    number: 33,
-    name: "Max Verstappen",
-    team: "Red Bull Racing",
-    country: "Netherlands",
-    dob: "30/09/1997",
-    placeOfBirth: "Hasselt, Belgium",
-  },
-  {
-    number: 23,
-    name: "Alex Albon",
-    team: "Red Bull Racing",
-    country: "Thailand",
-    dob: "23/03/1996",
-    placeOfBirth: "London, England",
-  },
-  {
-    number: 4,
-    name: "Lando Norris",
-    team: "McLaren",
-    country: "United Kingdom",
-    dob: "13/11/1999",
-    placeOfBirth: "Bristol, England",
-  },
-  {
-    number: 3,
-    name: "Daniel Ricciardo",
-    team: "Renault",
-    country: "Australia",
-    dob: "01/07/1989",
-    placeOfBirth: "Perth, Australia",
-  },
-  {
-    number: 31,
-    name: "Esteban Ocon",
-    team: "Renault",
-    country: "France",
-    dob: "17/09/1996",
-    placeOfBirth: "Évreux, Normandy",
-  },
-  {
-    number: 10,
-    name: "Pierre Gasly",
-    team: "AlphaTauri",
-    country: "France",
-    dob: "07/02/1996",
-    placeOfBirth: "Rouen, France",
-  },
-  {
-    number: 26,
-    name: "Daniil Kvyat",
-    team: "AlphaTauri",
-    country: "Russian Federation",
-    dob: "26/04/1994",
-    placeOfBirth: "Ufa, Russia",
-  },
-  {
-    number: 11,
-    name: "Sergio Perez",
-    team: "	Racing Point",
-    country: "Mexico",
-    dob: "26/01/1990",
-    placeOfBirth: "Guadalajara, Mexico",
-  },
-  {
-    number: 18,
-    name: "Lance Stroll",
-    team: "	Racing Point",
-    country: "Canada",
-    dob: "29/10/1998",
-    placeOfBirth: "Montreal, Canada",
-  },
-  {
-    number: 7,
-    name: "Kimi Räikkönen",
-    team: "Alfa Romeo",
-    country: "Finland",
-    dob: "17/10/1979",
-    placeOfBirth: "Espoo, Finland",
-  },
-  {
-    number: 99,
-    name: "Antonio Giovinazzi",
-    team: "Alfa Romeo",
-    country: "Italy",
-    dob: "14/12/1993",
-    placeOfBirth: "Martina Franca, Italy",
-  },
-  {
-    number: 20,
-    name: "Kevin Magnussen",
-    team: "Haas",
-    country: "Denmark",
-    dob: "05/10/1992",
-    placeOfBirth: "Roskilde, Denmark",
-  },
-  {
-    number: 8,
-    name: "Romain Grosjean",
-    team: "Haas",
-    country: "France",
-    dob: "17/04/1986",
-    placeOfBirth: "Geneva, Switzerland",
-  },
-  {
-    number: 63,
-    name: "George Russell",
-    team: "Williams",
-    country: "United Kingdom",
-    dob: "15/02/1998",
-    placeOfBirth: "King's Lynn, England",
-  },
-  {
-    number: 6,
-    name: "Nicholas Latifi",
-    team: "Williams",
-    country: "Canada",
-    dob: "29/06/1995",
-    placeOfBirth: "Montreal, Canada",
-  },
-];
-
 function Index(props) {
+  const dispatch = useDispatch();
   let history = useHistory();
   const [order, setOrder] = React.useState("asc");
   const [orderBy, setOrderBy] = React.useState("");
-  const [open, setOpen] = React.useState(false);
   const [tableName, setTableName] = React.useState("");
+  const [open, setOpen] = React.useState(false);
+  const [openTwo, setOpentwo] = React.useState(false);
+  const [openThree, setOpenthree] = React.useState(false);
+  const [openfour, setOpenfour] = React.useState(false);
+  const [values, setValues] = React.useState({});
+  const [pop, setPop] = React.useState(false);
 
   const handleProps = (data) => {
     setTableName(data);
@@ -195,94 +65,143 @@ function Index(props) {
     setOpen(false);
   };
 
+  const handleCloseTwo = () => {
+    setOpentwo(false);
+  };
+
+  const handleClosethree = () => {
+    setOpenthree(false);
+  };
+
+  const handleClosefour = () => {
+    setOpenfour(false);
+  };
+
+  const handleGenerate = () => {
+    let value = "customer";
+    dispatch(getCustomer(value));
+    setOpen(false);
+    setOpentwo(true);
+    // alert("dainel");
+  };
+
+  const handleChange = (e, name) => {
+    const newValues = { ...values };
+    newValues[name] = e.target.value;
+    setValues(newValues);
+  };
+
+  const handleGeneralButton = () => {
+    setOpen(false);
+    setPop(true);
+  };
+
+  const handlepop = () => {
+    setPop(false);
+  };
+
   return (
     <div>
       <Dialog
-        open={open}
-        TransitionComponent={Transition}
+        open={pop}
         keepMounted
-        onClose={handleClose}
-        fullWidth
-        maxWidth="md"
-        // aria-labelledby="alert-dialog-slide-title"
-        // aria-describedby="alert-dialog-slide-description"
+        onClose={handlepop}
+        aria-labelledby="alert-dialog-slide-title"
+        aria-describedby="alert-dialog-slide-description"
+        className="modalSend"
       >
-        {/* <DialogTitle className="text-center"> */}
-        <h4 className="pt-3 text-center">
-          <b>{"Lead Generation Form"}</b>
-        </h4>
-        <hr />
-        <p className="text-center" style={{ fontSize: "15px" }}>
-          <b>How many leads do u want to generate?</b>
-        </p>
-        <div className="row">
-          <div className="col-md-4, col-lg-4">daniel</div>
-          <div className="col-md-4, col-lg-4 vl">
-            <div className="d-flex justify-content-center">
-              <button disabled className="text-dark">
-                300
-                {/* <hr /> */}
-              </button>
-            </div>
-            <p style={{ fontSize: "13px" }} className="text-center">
-              Lead Generation Sources
-            </p>
-            <hr />
-            <div className="allnew">
-              <FirstRadio />
-              <SecondRadio />
-            </div>
+        <DialogTitle>Save Generated Leads</DialogTitle>
+        <DialogContent>
+          <p>Would you like to save these leads as contacts?</p>
+        </DialogContent>
+        <DialogActions>
+          <div className="d-flex justify-content-center">
+            <Button variant="contained" color="primary">
+              No
+            </Button>
+            <Button variant="contained" color="primary">
+              Yes
+            </Button>
           </div>
-          <div className="col-md-4, col-lg-4 vl">
-            <div className="mt-5 d-flex justify-content-center">
-              <img src={ProfileImage} width="50" />
-            </div>
-            <div className="allnew mt-3 d-flex justify-content-center">
-              <input type="radio" />
-              <label>All</label>
-            </div>
-            <div className="text-center">
-              <p>Percentage Ratio %</p>
-              <hr />
-              <select className="removeSelectBorder">
-                <option>Industries</option>
-              </select>
-              <Card>
-                <div className="allnew">
-                  <div>
-                    <div className="allnew">
-                      <p>Creative</p>
-                      <p className="text-danger ml-3">x</p>
-                    </div>
-                    <div className="allnew">
-                      <p>Creative</p>
-                      <p className="text-danger ml-3">x</p>
-                    </div>
-                    <div className="allnew">
-                      <p>Creative</p>
-                      <p className="text-danger ml-3">x</p>
-                    </div>
-                  </div>
-                  <div>
-                    <div className="allnew">
-                      <p>Creative</p>
-                      <p className="text-danger ml-3">x</p>
-                    </div>
-                    <div className="allnew">
-                      <p>Creative</p>
-                      <p className="text-danger ml-3">x</p>
-                    </div>
-                    <div className="allnew">
-                      <p>Creative</p>
-                      <p className="text-danger ml-3">x</p>
-                    </div>
-                  </div>
-                </div>
-              </Card>
-            </div>
-          </div>
-        </div>
+        </DialogActions>
       </Dialog>
+      <Dialog
+        open={openTwo}
+        keepMounted
+        onClose={handleCloseTwo}
+        aria-labelledby="alert-dialog-slide-title"
+        aria-describedby="alert-dialog-slide-description"
+        className="modalSend"
+      >
+        <CrmComtactModal
+          setOpen={setOpentwo}
+          setOpentwo={setOpentwo}
+          setOpenthree={setOpenthree}
+          setOpenfour={setOpenfour}
+        />
+      </Dialog>
+      <Dialog
+        open={openThree}
+        fullWidth
+        keepMounted
+        onClose={handleClosethree}
+        aria-labelledby="alert-dialog-slide-title"
+        aria-describedby="alert-dialog-slide-description"
+        className="modalSend"
+      >
+        <DialogTitle className="text-center p-5">
+          <b className="underLineText">Contact Generation Form</b>
+        </DialogTitle>
+        <div className="allnew d-flex justify-content-center">
+          <img src={prfile} width="30" height="40" />
+          <div className="text-center">
+            <b>Contact Type</b>
+          </div>
+          <select
+            onChange={(e) => handleChange(e, "individual")}
+            style={{ maxHeight: "40px" }}
+          >
+            <option value="Individual">Individual</option>
+            <option value="Organization">Organization</option>
+          </select>
+        </div>
+        <Individual handleClosetwo={handleClosethree} />
+      </Dialog>
+      <Dialog
+        open={openfour}
+        keepMounted
+        onClose={handleClosefour}
+        aria-labelledby="alert-dialog-slide-title"
+        aria-describedby="alert-dialog-slide-description"
+        className="modalSend"
+      >
+        <DialogTitle className="text-center p-5">
+          <b className="underLineText">Contact Generation Form</b>
+        </DialogTitle>
+        <div className="allnew d-flex justify-content-center">
+          <img src={company} width="30" height="40" />
+          <div className="text-center">
+            <b>Contact Type</b>
+          </div>
+          <select
+            onChange={(e) => handleChange(e, "individual")}
+            style={{ maxHeight: "40px" }}
+          >
+            <option value="Individual">Individual</option>
+            <option value="Organization">Organization</option>
+          </select>
+        </div>
+        <Company handleClosethree={handleClosefour} />
+      </Dialog>
+      <LeadForm
+        open={open}
+        handleClose={handleClose}
+        Transition={Transition}
+        setOpen={setOpen}
+        setPop={setPop}
+        setOpentwo={setOpentwo}
+        setOpenfour={setOpenfour}
+      />
       <div className="property-area pt-5">
         <div className="container">
           <div>
@@ -293,12 +212,26 @@ function Index(props) {
               />
             </span>
             <br />
-            <NameandSearchInput />
-            <div className="displayFilter">
+            <div
+              style={{ display: "flex", alignContent: "space-between" }}
+              className="box mt-4"
+            >
+              <div style={{ float: "left" }}>
+                <Typography variant="h5" noWrap>
+                  <b style={{ color: "#3c44b1" }}>Lead Qualification</b>
+                </Typography>
+              </div>
+              <div className="box overlay" style={{ marginLeft: "150px" }}>
+                <SearchIpnut />
+              </div>
+            </div>
+            {/* <NameandSearchInput /> */}
+            <div className="">
               <Button
                 onClick={handleClickOpen}
                 variant="contained"
                 color="primary"
+                style={{ width: "20%" }}
               >
                 Create New
               </Button>
@@ -306,17 +239,7 @@ function Index(props) {
             </div>
           </div>
           <div>
-            <Table
-              tableData={driversData}
-              headingColumns={[
-                "#",
-                "Name",
-                "Team",
-                "Country",
-                "Date of birth",
-                "Place of birth",
-              ]}
-            />
+            <CreateNewTable />
           </div>
         </div>
       </div>
@@ -324,4 +247,4 @@ function Index(props) {
   );
 }
 
-export default withRouter(Index);
+export default withRouter(connect(null, { getCustomer })(Index));

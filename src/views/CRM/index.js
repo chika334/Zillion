@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   Container,
@@ -7,7 +7,10 @@ import {
   Popover,
   Dialog,
   DialogTitle,
+  DialogActions,
+  DialogContent,
 } from "@material-ui/core";
+import company from "../../css/images/company.jpg";
 import { Link, withRouter, useHistory } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import NameandSearchInput from "../NameandSearchInput";
@@ -15,7 +18,19 @@ import Filter from "../filter";
 import dropbox from "../../css/images/dropbox.png";
 import serve from "../../css/images/serve.png";
 import "../../css/ecommerce.css";
+import person from "../../css/images/person.png";
 import { CRMData } from "../../Data/crmData";
+import Individual from "./Individual/Index";
+import Company from "./Company/Index";
+import prfile from "../../css/images/prfile.png";
+import CrmComtactModal from "./CrmComtactModal";
+import LeadForm from "./LeadForm";
+import Slide from "@material-ui/core/Slide";
+import SearchIpnut from "./SearchInput";
+
+const Transition = React.forwardRef(function Transition(props, ref) {
+  return <Slide direction="up" ref={ref} {...props} />;
+});
 
 function rand() {
   return Math.round(Math.random() * 20) - 10;
@@ -64,6 +79,7 @@ function Index(props) {
   // getModalStyle is not a pure function, we roll the style only on the first render
   const [modalStyle] = React.useState(getModalStyle);
   const [open, setOpen] = React.useState(false);
+  const [otherOpen, setOtherOpen] = React.useState(false);
   const [title, setTitle] = React.useState("");
   const [show, setShow] = React.useState(false);
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -71,12 +87,15 @@ function Index(props) {
   const [newOrderOpen, setNewOrderOpen] = React.useState(false);
   const [allOrder, setAllOrder] = React.useState(false);
   const [saveName, setSaveName] = React.useState("");
+  const [openTwo, setOpentwo] = React.useState(false);
+  const [openThree, setOpenthree] = React.useState(false);
+  const [pop, setPop] = React.useState(false);
+  const [values, setValues] = useState({});
 
   const handlePopoverOpen = (details) => (event) => {
     setAnchorEl(event.currentTarget);
     // console.log(details);
     setSaveChanges(details);
-    // setAnchorEl(event.target.value)
   };
 
   const handlePopoverClose = () => {
@@ -102,10 +121,11 @@ function Index(props) {
     if (name === "Contacts") {
       setOpen(true);
     } else if (name === "Lead Generation") {
-      setOpen(true);
+      setOpen(false);
+      setOtherOpen(true);
     } else if (name === "Qualifying Leads") {
       props.history.push({
-        pathname: "/crm/qaulifying-leads",
+        pathname: "/sales/crm/qaulifying-leads",
         state: { name: "Qualifying Leads" },
       });
     } else if (name === "Available") {
@@ -127,6 +147,11 @@ function Index(props) {
         pathname: "/pos/payment-method",
         state: { data: "Choose Payment Method" },
       });
+    } else if (name === "Contacting") {
+      props.history.push({
+        pathname: "/sales/crm/contact",
+        state: { data: "Contact" },
+      });
     }
   };
 
@@ -134,75 +159,147 @@ function Index(props) {
     setOpen(false);
   };
 
-  const handleDropbox = () => {
-    // alert("dropbox");
-    history.push("/pos/sales-order");
+  const handleClosetwo = () => {
+    setOpentwo(false);
+  };
+
+  const handleClosethree = () => {
+    setOpenthree(false);
   };
 
   const handleServe = () => {
     // alert("Server");
-    history.push("/pos/ticketting");
+    setOpen(false);
+    setOpenthree(true);
   };
 
-  const newBody = (
-    <div className="p-4">
-      <DialogTitle className="text-center pb-5">
-        <b className="underLineText">Choose Product Itenary</b>
-      </DialogTitle>
-      <div className="newBody">
-        <div onClick={handleDropbox} className="single-feature cardsDetail">
-          <div
-            className="single-feature text-center mr-2 cardHeight"
-            style={{ backgroundColor: "grey" }}
-          >
-            <div className="single-feature bg-light m-3 p-4 modalCardHeight">
-              <img src={dropbox} width={60} alt="..." />
-            </div>
-            <h6>Goods</h6>
-            <div className="p-2" style={{ fontSize: "15px" }}>
-              In publishing and graphic design, Lorem ipsum is a placeholder
-              text commonly used to demonstrate the visual form of a document
-            </div>
-          </div>
-        </div>
-        <div onClick={handleServe} className="single-feature pl-2">
-          <div
-            className="single-feature text-center mr-2 cardHeight"
-            style={{ backgroundColor: "grey" }}
-          >
-            <div className="single-feature bg-light m-3 p-4 modalCardHeight">
-              <img src={serve} width={60} alt="..." />
-            </div>
-            <h6>Services</h6>
-            <div className="p-2" style={{ fontSize: "15px" }}>
-              In publishing and graphic design, Lorem ipsum is a placeholder
-              text commonly used to demonstrate the visual form of a document
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
+  const handleChange = (e, name) => {
+    const newValues = { ...values };
+    newValues[name] = e.target.value;
+    setValues(newValues);
+  };
 
-  const allBody = (
-    <DialogTitle>
-      <b>The Sales Experience</b>
-    </DialogTitle>
-  );
+  useEffect(() => {
+    if (values["Individual"] === "Organization") {
+      setOpentwo(false);
+      setOpenthree(true);
+    } else if (values["Organization"] == "Individual") {
+      setOpenthree(false);
+      setOpentwo(true);
+    }
+  }, []);
 
-  // console.log(saveName);
+  const handleCloseOther = () => {
+    setOtherOpen(false);
+  };
+
+  const handlepop = () => {
+    setPop(false);
+  };
+
   return (
     <div>
       <Dialog
+        open={pop}
+        keepMounted
+        onClose={handlepop}
+        aria-labelledby="alert-dialog-slide-title"
+        aria-describedby="alert-dialog-slide-description"
+        className="modalSend"
+      >
+        <DialogTitle>Save Generated Leads</DialogTitle>
+        <DialogContent>
+          <p>Would you like to save these leads as contacts?</p>
+        </DialogContent>
+        <DialogActions>
+          <div className="d-flex justify-content-center">
+            <Button variant="contained" color="primary">
+              No
+            </Button>
+            <Button variant="contained" color="primary">
+              Yes
+            </Button>
+          </div>
+        </DialogActions>
+      </Dialog>
+      <Dialog
         open={open}
-        // TransitionComponent={Transition}
         keepMounted
         onClose={handleClose}
         aria-labelledby="alert-dialog-slide-title"
         aria-describedby="alert-dialog-slide-description"
         className="modalSend"
       >
-        {saveName === "Contacts" ? newBody : allBody}
+        {saveName === "Contacts" ? (
+          <CrmComtactModal
+            setOpen={setOpen}
+            setOpenthree={setOpenthree}
+            setOpentwo={setOpentwo}
+          />
+        ) : (
+          ""
+        )}
+      </Dialog>
+      <LeadForm
+        open={otherOpen}
+        handleClose={handleCloseOther}
+        Transition={Transition}
+        setOpen={setOtherOpen}
+        setPop={setPop}
+        setOpentwo={setOpentwo}
+      />
+      <Dialog
+        open={openTwo}
+        fullWidth
+        keepMounted
+        onClose={handleClosetwo}
+        aria-labelledby="alert-dialog-slide-title"
+        aria-describedby="alert-dialog-slide-description"
+        className="modalSend"
+      >
+        <DialogTitle className="text-center p-5">
+          <b className="underLineText">Contact Generation Form</b>
+        </DialogTitle>
+        <div className="allnew d-flex justify-content-center">
+          <img src={prfile} width="30" height="40" />
+          <div className="text-center">
+            <b>Contact Type</b>
+          </div>
+          <select
+            onChange={(e) => handleChange(e, "individual")}
+            style={{ maxHeight: "40px" }}
+          >
+            <option value="Individual">Individual</option>
+            <option value="Organization">Organization</option>
+          </select>
+        </div>
+        <Individual handleClosetwo={handleClosetwo} />
+      </Dialog>
+      <Dialog
+        open={openThree}
+        keepMounted
+        onClose={handleClosethree}
+        aria-labelledby="alert-dialog-slide-title"
+        aria-describedby="alert-dialog-slide-description"
+        className="modalSend"
+      >
+        <DialogTitle className="text-center p-5">
+          <b className="underLineText">Contact Generation Form</b>
+        </DialogTitle>
+        <div className="allnew d-flex justify-content-center">
+          <img src={company} width="30" height="40" />
+          <div className="text-center">
+            <b>Contact Type</b>
+          </div>
+          <select
+            onChange={(e) => handleChange(e, "individual")}
+            style={{ maxHeight: "40px" }}
+          >
+            <option value="Individual">Individual</option>
+            <option value="Organization">Organization</option>
+          </select>
+        </div>
+        <Company handleClosethree={handleClosethree} />
       </Dialog>
       <Container>
         <div className="">
@@ -213,7 +310,20 @@ function Index(props) {
             />
           </span>
           <br />
-          <NameandSearchInput />
+          {/* <NameandSearchInput /> */}
+          <div
+            style={{ display: "flex", alignContent: "space-between" }}
+            className="box mt-4"
+          >
+            <div style={{ float: "left" }}>
+              <Typography variant="h5" noWrap>
+                <b style={{ color: "#3c44b1" }}>CRM Dashboard</b>
+              </Typography>
+            </div>
+            <div className="box overlay" style={{ marginLeft: "150px" }}>
+              <SearchIpnut />
+            </div>
+          </div>
           <div>
             <Filter />
           </div>

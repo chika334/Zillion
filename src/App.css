@@ -471,7 +471,8 @@ table .tableReceipt {
   width: 100%;
 }
 
-.tableReceipt td, th {
+.tableReceipt td,
+th {
   border: 1px solid #dddddd;
   text-align: left;
   padding: 8px;
@@ -479,4 +480,37 @@ table .tableReceipt {
 
 .tableReceipt tr:nth-child(even) {
   background-color: #dddddd;
+}
+
+input.radio {
+  display: inline;
+}
+
+#containershow {
+  /* width:100%;
+  text-align:center; */
+}
+
+#left {
+  float:left;
+  width:100px;
+  height: 20px;
+  /* background: #ff0000; */
+}
+
+#center {
+  display: inline-block;
+  margin:0 auto;
+  width:100px;
+  height: 20px;
+  /* background: #00ff00; */
+}
+
+#right {
+  display: inline-block;
+  margin:0 auto;
+  /* float:right; */
+  width:100px;
+  height: 20px;
+  /* background: #0000ff; */
 }

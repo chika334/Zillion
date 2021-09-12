@@ -25,6 +25,10 @@ import {
   bindHover,
   bindPopover,
 } from "material-ui-popup-state/hooks";
+import TaskModal from "../TaskModal/TaskModal";
+import PhoneActivity from "../TaskModal/PhoneActivity";
+// import { Calendar } from "@material-ui/pickers";
+import Calendar from "./Calendar";
 
 export const data = {
   propertyData: [
@@ -57,9 +61,12 @@ function CreateNewTable() {
   const [open, setOpen] = React.useState(false);
   const [openPop, setOpenPop] = React.useState(false);
   const [task, setTask] = React.useState(false);
-  const [anchorEl, setAnchorEl] = React.useState(null);
+  // const [anchorEl, setAnchorEl] = React.useState(null);
   const [values, setValues] = useState(false);
   const [secondPop, setSecondPop] = useState(false);
+  const [newTasks, setNewTasks] = useState(false);
+  const [newActivites, setNewActivities] = useState(false);
+  const [calendar, setCalendar] = useState(false);
 
   const handleClick = () => {
     setValues(true);
@@ -117,6 +124,34 @@ function CreateNewTable() {
   const handlePopClose = () => {
     setOpenPop(false);
   };
+
+  const handleDone = () => {
+    setSecondPop(false);
+    setOpenPop(true);
+  };
+
+  const newTask = () => {
+    setTask(false);
+    setNewTasks(true);
+  };
+
+  const handleActivities = () => {
+    setOpenPop(false);
+    setNewActivities(true);
+  };
+
+  const handleCalendar = () => {
+    setCalendar(false);
+  };
+
+  const activites = () => {
+    setOpenPop(true);
+  };
+
+  const calendarsDisplay = () => {
+    setCalendar(true)
+  }
+
   return (
     <div className="property-area pt-5">
       <div className="container">
@@ -160,8 +195,20 @@ function CreateNewTable() {
                 >
                   300 Tasks
                 </div>
-                <div id="center">20 Activties</div>
-                <div id="right">Calendar</div>
+                <div
+                  onClick={activites}
+                  style={{ cursor: "pointer" }}
+                  id="center"
+                >
+                  20 Activties
+                </div>
+                <div
+                  onClick={calendarsDisplay}
+                  style={{ cursor: "pointer" }}
+                  id="right"
+                >
+                  Calendar
+                </div>
               </div>
             </div>
             <Filter onProp={handleProps} />
@@ -196,7 +243,7 @@ function CreateNewTable() {
         <DialogActions>
           <div className="d-flex justify-content-center">
             <div onClick={handleActivites}>View all activities instead</div>
-            <Button variant="contained" color="primary">
+            <Button onClick={newTask} variant="contained" color="primary">
               Create New
             </Button>
           </div>
@@ -224,7 +271,11 @@ function CreateNewTable() {
           <div className="d-flex justify-content-center">
             <div onClick={handleNewActivites}>Create a new task instead</div>
             <div />
-            <Button variant="contained" color="primary">
+            <Button
+              onClick={handleActivities}
+              variant="contained"
+              color="primary"
+            >
               Create New
             </Button>
           </div>
@@ -234,7 +285,7 @@ function CreateNewTable() {
       <Dialog
         open={secondPop}
         keepMounted
-        onClose={handlePopClose}
+        onClose={handleNewActivitesClose}
         aria-labelledby="alert-dialog-slide-title"
         aria-describedby="alert-dialog-slide-description"
         className="modalSend"
@@ -260,8 +311,15 @@ function CreateNewTable() {
           <div className="d-flex justify-content-center">
             <div onClick={handleNewActivites}>Create a new task instead</div>
             <div />
-            <Button variant="contained" color="primary">
-              Create New
+            <Button
+              onClick={handleNewActivitesClose}
+              variant="contained"
+              color="primary"
+            >
+              Cancel
+            </Button>
+            <Button onClick={handleDone} variant="contained" color="primary">
+              Done
             </Button>
           </div>
         </DialogActions>
@@ -311,6 +369,43 @@ function CreateNewTable() {
           </Button>
         ))}
       </Popover>
+      <Dialog
+        open={newTasks}
+        keepMounted
+        onClose={newTask}
+        aria-labelledby="alert-dialog-slide-title"
+        aria-describedby="alert-dialog-slide-description"
+        className="modalSend"
+        fullWidth
+      >
+        <TaskModal
+          setOpen={setNewTasks}
+          setOpentwo={setSecondPop}
+          setOpenthree={setOpenPop}
+        />
+      </Dialog>
+      <Dialog
+        open={newActivites}
+        keepMounted
+        onClose={handleActivites}
+        aria-labelledby="alert-dialog-slide-title"
+        aria-describedby="alert-dialog-slide-description"
+        className="modalSend"
+        fullWidth
+      >
+        <PhoneActivity setOpen={setNewActivities} setOpentwo={setCalendar} />
+      </Dialog>
+      <Dialog
+        open={calendar}
+        keepMounted
+        onClose={handleCalendar}
+        aria-labelledby="alert-dialog-slide-title"
+        aria-describedby="alert-dialog-slide-description"
+        className="modalSend"
+        fullWidth
+      >
+        <Calendar />
+      </Dialog>
     </div>
   );
 }

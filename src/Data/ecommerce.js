@@ -64,7 +64,7 @@ export const ExtendedSalesData = {
       image: remita,
       title: "Invoice and Payments",
       // url: "/sales/ecommerce/total_ads_links",
-      displayButtons: ["All Invoices", "All Payments", "Customization"],
+      displayButtons: ["All Invoices", "All Receivables", "Customization"],
     },
     {
       image: ShoppingCart,

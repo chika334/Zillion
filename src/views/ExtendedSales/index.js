@@ -8,12 +8,15 @@ import {
   Popover,
   Modal,
   Card,
+  Paper,
 } from "@material-ui/core";
-import { Link, withRouter } from "react-router-dom";
+import InputBase from "@material-ui/core/InputBase";
+import { Link, withRouter, useHistory } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import NameandSearchInput from "./NameandSearchInput";
 import Filter from "./filter";
 import "../../css/ecommerce.css";
+import Banner from "./NewSearchInput";
 import { ExtendedSalesData } from "../../Data/ecommerce";
 
 function rand() {
@@ -59,6 +62,7 @@ const useStyles = makeStyles((theme) => ({
 
 function Index(props) {
   const classes = useStyles();
+  const history = useHistory();
   // getModalStyle is not a pure function, we roll the style only on the first render
   const [modalStyle] = React.useState(getModalStyle);
   const [open, setOpen] = React.useState(false);
@@ -66,6 +70,24 @@ function Index(props) {
   const [show, setShow] = React.useState(false);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [saveChanges, setSaveChanges] = React.useState("");
+  const [order, setOrder] = React.useState("asc");
+  const [orderBy, setOrderBy] = React.useState("");
+  const [tableName, setTableName] = React.useState("");
+
+  const handleProps = (data) => {
+    setTableName(data);
+
+    const isAsc = orderBy === data && order === "asc";
+    setOrder(isAsc ? "desc" : "asc");
+    setOrderBy(data);
+  };
+
+  const handleCreateNew = () => {
+    history.push({
+      pathname: "/extended-sales/all-RFP/new-request-price",
+      state: { data: "New Request For Price" },
+    });
+  };
 
   const handlePopoverOpen = (details) => (event) => {
     setAnchorEl(event.currentTarget);
@@ -93,15 +115,16 @@ function Index(props) {
   const opens = Boolean(anchorEl);
 
   const handleClick = (e, name) => {
+    console.log(name);
     if (name === "All RFP") {
       props.history.push({
         pathname: `/sales/extended-sales/all-rfp`,
-        state: { data: name },
+        state: { data: "All Request for Price's" },
       });
     } else if (name === "New RFP Data") {
       props.history.push({
         pathname: "/extended-sales/all-RFP/new-request-price",
-        state: { data: name },
+        state: { data: "New Request for Price" },
       });
     } else if (name === "All Estimates") {
       props.history.push({
@@ -128,9 +151,9 @@ function Index(props) {
         pathname: "/sales/extended-sales/all-invoices",
         state: { data: name },
       });
-    } else if (name === "All Payments") {
+    } else if (name === "All Receivables") {
       props.history.push({
-        pathname: "/sales/extended-sales/all-payments",
+        pathname: "/sales/extended-sales/receievables",
         state: { data: name },
       });
     }
@@ -148,17 +171,56 @@ function Index(props) {
 
   return (
     <Container>
-      <div className="">
-        <span>
+      <div className="mt-5">
+        <span onClick={history.goBack}>
           <FontAwesomeIcon
             style={{ color: "#3c44b1", width: "50", height: "30" }}
             icon={["fas", "arrow-circle-left"]}
           />
         </span>
         <br />
-        <NameandSearchInput />
         <div>
-          <Filter />
+          <div style={{ marginRight: "10%", float: "left" }} className="box">
+            <Banner>Extended Sales Dashboard</Banner>
+          </div>
+          <div>
+            <Paper
+              component="form"
+              style={{ float: "left" }}
+              className="searchPaper"
+            >
+              <InputBase
+                className="searchInput"
+                placeholder="Search Google Maps"
+                style={{ paddingTop: "3%", paddingBottom: "3%" }}
+                inputProps={{ "aria-label": "search google maps" }}
+              />
+            </Paper>
+            <Button
+              className="buttonSearch"
+              style={{ backgroundColor: "#3c44b1", color: "#fff" }}
+            >
+              SEARCH
+            </Button>
+          </div>
+        </div>
+        <div className="mt-5">
+          <div
+            style={{ marginRight: "55%", float: "left" }}
+            // className="box"
+          >
+            {/* <Button
+              onClick={handleCreateNew}
+              variant="contained"
+              color="primary"
+              // className="mr-5"
+            >
+              Create New
+            </Button> */}
+          </div>
+          <div className="">
+            <Filter onProp={handleProps} />
+          </div>
         </div>
 
         <div className="property-filter-area row custom-gutter">
@@ -166,8 +228,12 @@ function Index(props) {
             <div key={i} className="col-lg-4 col-md-4 col-sm-6 mt-5">
               <div>
                 <div
-                  className="single-feature pt-2 pl-2"
-                  style={{ backgroundColor: "#3c44b1" }}
+                  className="pt-2 pl-2"
+                  style={{
+                    backgroundColor: "#3c44b1",
+                    padding: "15%",
+                    borderRadius: "5%",
+                  }}
                 >
                   <img
                     className="Ecommercemedia"

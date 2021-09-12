@@ -24,11 +24,12 @@
   }
 
   .searchInput {
+    /* background-color: red; */
     width: 250px;
   }
 
   .searchPaper {
-    /* width: 200px; */
+    width: 200px;
     margin-left: 430px;
   }
 
@@ -202,7 +203,6 @@
     margin-left: 0px;
   }
 
-
   .columns {
     float: left;
     width: 100%;
@@ -222,7 +222,6 @@
     margin-left: 160px;
     text-align: left;
   }
-
 
   .filterDetails {
     margin-top: 15px;

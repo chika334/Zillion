@@ -11,14 +11,14 @@ import {
   DialogContent,
 } from "@material-ui/core";
 import company from "../../css/images/company.jpg";
-import { Link, withRouter, useHistory } from "react-router-dom";
+import { withRouter, useHistory } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
-import NameandSearchInput from "../NameandSearchInput";
+// import NameandSearchInput from "../NameandSearchInput";
 import Filter from "../filter";
-import dropbox from "../../css/images/dropbox.png";
-import serve from "../../css/images/serve.png";
+// import dropbox from "../../css/images/dropbox.png";
+// import serve from "../../css/images/serve.png";
 import "../../css/ecommerce.css";
-import person from "../../css/images/person.png";
+// import person from "../../css/images/person.png";
 import { CRMData } from "../../Data/crmData";
 import Individual from "./Individual/Index";
 import Company from "./Company/Index";
@@ -150,6 +150,11 @@ function Index(props) {
     } else if (name === "Contacting") {
       props.history.push({
         pathname: "/sales/crm/contact",
+        state: { data: "Contact" },
+      });
+    } else if(name === "Quotations") {
+      props.history.push({
+        pathname: "/sales/crm/quotation",
         state: { data: "Contact" },
       });
     }

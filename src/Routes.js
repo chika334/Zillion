@@ -73,19 +73,20 @@ import ExtendedSalesID from "./views/ExtendedSales/exDetails/index";
 import NewRequestPrice from "./views/ExtendedSales/exDetails/newPriceDetails/NewRequestPrice";
 import CustomerInfo from "./views/ExtendedSales/exDetails/newPriceDetails/customerInfo";
 import NewEstimates from "./views/ExtendedSales/exDetails/NewEstimates";
-import SalesOrders from "./views/ExtendedSales/exDetails/allSalesOrder";
-import NewSalesOrders from "./views/ExtendedSales/exDetails/newSalesOrder";
-// import AllInvoice from "./views/ExtendedSales/exDetails/allInvoice";
-import AllPayments from "./views/ExtendedSales/exDetails/allPayments";
 import Ecoinvoice from "./views/Sales/Ecommerce/advert/create/Ecoinvoice";
 import DeliveryMethod from "./views/Sales/Ecommerce/advert/create/DeliveryMethod";
 import EcommercePaymentMethod from "./views/Sales/Ecommerce/advert/create/EcommercePaymentMethod";
+import AllSalesOrder from "./views/ExtendedSales/exDetails/allSalesOrder";
+import NewSalesOrder from "./views/ExtendedSales/exDetails/newSalesOrder";
+import ExtendedAllInvoice from "./views/ExtendedSales/exDetails/allInvoice";
+import AllRecievables from "./views/ExtendedSales/exDetails/AllRecievables";
+import ReceivePayment from "./views/ExtendedSales/exDetails/ReceivePayment";
 
 // crm
 import CRM from "./views/CRM";
 import CRMCreateNew from "./views/CRM/createNew";
 import Contact from "./views/CRM/Contact";
-// import LeadQualification from "./views/CRM/Company/LeadQualification";
+import Qotation from "./views/CRM/Qotation";
 
 // company
 import CompanyNavbar from "./views/Company/navbar";
@@ -279,6 +280,31 @@ const defaultContainer = () => (
               path="/sales/extended-sales/new-estimates"
               component={NewEstimates}
             />
+            <Route
+              exact
+              path="/sales/extended-sales/sales-orders"
+              component={AllSalesOrder}
+            />
+            <Route
+              exact
+              path="/sales/extended-sales/new-sales-order"
+              component={NewSalesOrder}
+            />
+            <Route
+              exact
+              path="/sales/extended-sales/all-invoices"
+              component={ExtendedAllInvoice}
+            />
+            <Route
+              exact
+              path="/sales/extended-sales/receievables"
+              component={AllRecievables}
+            />
+            <Route
+              exact
+              path="/sales/extended-sales/reveive-payments"
+              component={ReceivePayment}
+            />
             {/* CRM */}
             <Route exact path="/sales/crm" component={CRM} />
             <Route
@@ -288,17 +314,9 @@ const defaultContainer = () => (
             />
             <Route exact path="/sales/crm/contact" component={Contact} />
 
+            <Route exact path="/sales/crm/quotation" component={Qotation} />
+
             {/*<Route
-              exact
-              path="/sales/extended-sales/:id"
-              component={ExtendedSalesID}
-            />
-            <Route
-              exact
-              path="/sales/extended-sales/:id"
-              component={ExtendedSalesID}
-            />
-            <Route
               exact
               path="/sales/extended-sales/:id"
               component={ExtendedSalesID}

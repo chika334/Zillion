@@ -3,11 +3,14 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import NameandSearchInput from "./otherDesigns/NameandSearchInput";
 import Filter from "./otherDesigns/filter";
 import "../../../css/sales.css";
-import { Button } from "@material-ui/core";
+import { Button, Paper, InputBase } from "@material-ui/core";
 import { withRouter, useHistory } from "react-router-dom";
 import AdvertTable from "./otherDesigns/tableDesign";
+import Banner from "./otherDesigns/NewSearchInput";
+import ProgressBar from "../../CRM/TaskModal/ProgressBar";
+// import Filter from './otherDesigns/filter'
 
-function AllSalesOrder() {
+function AllSalesOrder(props) {
   let history = useHistory();
   const [order, setOrder] = React.useState("asc");
   const [orderBy, setOrderBy] = React.useState("");
@@ -39,19 +42,137 @@ function AllSalesOrder() {
               />
             </span>
             <br />
-            <NameandSearchInput />
-            <div className="displayFilter">
-              <Button
-                onClick={handleCreateNew}
-                variant="contained"
-                color="primary"
+            <div>
+              <div
+                style={{ marginRight: "20%", float: "left" }}
+                className="box"
               >
-                Create New
-              </Button>
-              <Filter onProp={handleProps} />
+                <Banner>{props.location.state.data}</Banner>
+              </div>
+              <div>
+                <Paper
+                  component="form"
+                  style={{ float: "left" }}
+                  className="searchPaper"
+                >
+                  <InputBase
+                    className="searchInput"
+                    placeholder="Search Google Maps"
+                    style={{ paddingTop: "3%", paddingBottom: "3%" }}
+                    inputProps={{ "aria-label": "search google maps" }}
+                  />
+                </Paper>
+                <Button
+                  className="buttonSearch"
+                  style={{ backgroundColor: "#3c44b1", color: "#fff" }}
+                >
+                  SEARCH
+                </Button>
+              </div>
+            </div>
+            <div className="mt-5">
+              <div
+                style={{ marginRight: "60%", float: "left" }}
+                // className="box"
+              >
+                <Button
+                  onClick={handleCreateNew}
+                  variant="contained"
+                  color="primary"
+                >
+                  Create New
+                </Button>
+              </div>
+              <div className="">
+                <div style={{ padding: 0, margin: 0 }}>
+                  <div style={{ float: "left", paddingLeft: "10px" }}>
+                    <label>Target: </label>
+                    <label>30,000</label>
+                    <ProgressBar />
+                  </div>
+
+                  <div>
+                    <label>Sales Amount</label>
+                    <label>30,000</label>
+                  </div>
+                </div>
+
+                {/* <ProgressBar /> */}
+              </div>
             </div>
           </div>
-          <AdvertTable dataTable={tableName} order={order} orderBy={orderBy} />
+          <div style={{ float: "right" }}>
+            <Filter onProp={handleProps} />
+          </div>
+          <div className="mt-4">
+            <table id="customersCreateNew">
+              <tr>
+                <th className="text-center">#</th>
+                <th className="text-center">Customer</th>
+                <th className="text-center">Credit note</th>
+                <th className="text-center">Rebate</th>
+                <th className="text-center">Number of Invoices</th>
+                <th className="text-center">Total Invoice Value</th>
+              </tr>
+              <tr>
+                <td></td>
+                <td>James Bond</td>
+                <td>2,000</td>
+                <td>2,000</td>
+                <td>3</td>
+                <td>$77,000</td>
+              </tr>
+              <tr>
+                <td></td>
+                <td>James Bond</td>
+                <td>2,000</td>
+                <td>2,000</td>
+                <td>3</td>
+                <td>$77,000</td>
+              </tr>
+              <tr>
+                <td></td>
+                <td>James Bond</td>
+                <td>2,000</td>
+                <td>2,000</td>
+                <td>3</td>
+                <td>$77,000</td>
+              </tr>
+              <tr>
+                <td></td>
+                <td>James Bond</td>
+                <td>2,000</td>
+                <td>2,000</td>
+                <td>3</td>
+                <td>$77,000</td>
+              </tr>
+              <tr>
+                <td></td>
+                <td>James Bond</td>
+                <td>2,000</td>
+                <td>2,000</td>
+                <td>3</td>
+                <td>$77,000</td>
+              </tr>
+              <tr>
+                <td></td>
+                <td>James Bond</td>
+                <td>2,000</td>
+                <td>2,000</td>
+                <td>3</td>
+                <td>$77,000</td>
+              </tr>
+              <tr>
+                <td></td>
+                <td>James Bond</td>
+                <td>2,000</td>
+                <td>2,000</td>
+                <td>3</td>
+                <td>$77,000</td>
+              </tr>
+            </table>
+          </div>
+          {/* <AdvertTable dataTable={tableName} order={order} orderBy={orderBy} /> */}
         </div>
       </div>
     </div>

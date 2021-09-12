@@ -10,7 +10,7 @@ import Banner from "./otherDesigns/NewSearchInput";
 import ProgressBar from "../../CRM/TaskModal/ProgressBar";
 // import Filter from './otherDesigns/filter'
 
-function AllInvoices(props) {
+function AllSalesOrder(props) {
   let history = useHistory();
   const [order, setOrder] = React.useState("asc");
   const [orderBy, setOrderBy] = React.useState("");
@@ -29,7 +29,10 @@ function AllInvoices(props) {
     //   pathname: "/sales/extended-sales/new-sales-order",
     //   state: { data: "New Sales Order" },
     // });
-    alert("no link here")
+    history.push({
+      pathname: "/sales/extended-sales/reveive-payments",
+      state: { data: "Receive Payments" },
+    });
   };
   return (
     <div>
@@ -71,7 +74,7 @@ function AllInvoices(props) {
                 </Button>
               </div>
             </div>
-            <div className="mt-5">
+            <div className="">
               <div
                 style={{ marginRight: "60%", float: "left" }}
                 // className="box"
@@ -81,29 +84,13 @@ function AllInvoices(props) {
                   variant="contained"
                   color="primary"
                 >
-                  Create New
+                  Pay Now
                 </Button>
               </div>
-              <div className="">
-                <div style={{ padding: 0, margin: 0 }}>
-                  <div style={{ float: "left", paddingLeft: "10px" }}>
-                    <label>Target: </label>
-                    <label>30,000</label>
-                    <ProgressBar />
-                  </div>
-
-                  <div>
-                    <label>Sales Amount</label>
-                    <label>30,000</label>
-                  </div>
-                </div>
-
-                {/* <ProgressBar /> */}
+              <div style={{ float: "right" }}>
+                <Filter onProp={handleProps} />
               </div>
             </div>
-          </div>
-          <div style={{ float: "right" }}>
-            <Filter onProp={handleProps} />
           </div>
           <div className="mt-4">
             <table id="customersCreateNew">
@@ -180,4 +167,4 @@ function AllInvoices(props) {
   );
 }
 
-export default withRouter(AllInvoices);
+export default withRouter(AllSalesOrder);

@@ -14,7 +14,7 @@ import company from "../../css/images/company.jpg";
 import { withRouter, useHistory } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 // import NameandSearchInput from "../NameandSearchInput";
-import Filter from "../filter";
+import Filter from "./Filter";
 // import dropbox from "../../css/images/dropbox.png";
 // import serve from "../../css/images/serve.png";
 import "../../css/ecommerce.css";
@@ -152,10 +152,20 @@ function Index(props) {
         pathname: "/sales/crm/contact",
         state: { data: "Contact" },
       });
-    } else if(name === "Quotations") {
+    } else if (name === "Quotations") {
       props.history.push({
         pathname: "/sales/crm/quotation",
-        state: { data: "Contact" },
+        state: { data: name },
+      });
+    } else if (name === "Sales Orders") {
+      props.history.push({
+        pathname: "/sales/extended-sales/sales-orders",
+        state: { data: name },
+      });
+    } else if (name === "Incentives") {
+      props.history.push({
+        pathname: "/sales/extended-sales/all-invoices",
+        state: { data: name },
       });
     }
   };

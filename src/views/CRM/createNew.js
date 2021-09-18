@@ -2,7 +2,7 @@ import React from "react";
 // import AllRFP from "./AllRFP";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import NameandSearchInput from "../NameandSearchInput";
-import Filter from "./Filter";
+import Filter from "../filter";
 import "../../css/sales.css";
 import {
   Button,
@@ -60,6 +60,17 @@ function Index(props) {
   const handleClickOpen = () => {
     setOpen(true);
   };
+
+  const arrayOfValues = [
+    "Prospect Name",
+    "Prospect Type",
+    "Company",
+    "Product",
+    "Budget",
+    "Authority",
+    "Time",
+    "Total",
+  ];
 
   const handleClose = () => {
     setOpen(false);
@@ -226,7 +237,7 @@ function Index(props) {
               </div>
             </div>
             {/* <NameandSearchInput /> */}
-            <div className="">
+            <div className="mt-4">
               <Button
                 onClick={handleClickOpen}
                 variant="contained"
@@ -235,7 +246,7 @@ function Index(props) {
               >
                 Create New
               </Button>
-              <Filter onProp={handleProps} />
+              <Filter arrayOfValues={arrayOfValues} onProp={handleProps} />
             </div>
           </div>
           <div>

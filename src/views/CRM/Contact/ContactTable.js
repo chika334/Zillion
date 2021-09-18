@@ -2,22 +2,34 @@ import React, { useEffect } from "react";
 import "./message.scss";
 import $ from "jquery";
 import { FiMessageSquare } from "react-icons/fi";
+import {
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogTitle,
+  TextField,
+  Button,
+} from "@material-ui/core";
 
 export default function ContactTable() {
+  const [open, setOpen] = React.useState(false);
+  const [valueData, setValueData] = React.useState("");
   const [value, setValue] = React.useState(false);
-  const [first, setFirst] = React.useState(false);
-  const [second, setSecond] = React.useState(false);
-  const [third, setThird] = React.useState(false);
-  const [fourth, setFourth] = React.useState(false);
-  const [fifth, setFifth] = React.useState(false);
-  const [sixth, setSixth] = React.useState(false);
-  const [seventh, setSeventh] = React.useState(false);
-  const [eighth, setEighth] = React.useState(false);
-  const [nineth, setNineth] = React.useState(false);
-  const [tenth, setTenth] = React.useState(false);
+  const [first, setFirst] = React.useState("");
+  const [second, setSecond] = React.useState("");
+  const [third, setThird] = React.useState("");
+  const [fourth, setFourth] = React.useState("");
+  const [fifth, setFifth] = React.useState("");
+  const [sixth, setSixth] = React.useState("");
+  const [seventh, setSeventh] = React.useState("");
+  const [eighth, setEighth] = React.useState("");
+  const [nineth, setNineth] = React.useState("");
+  const [tenth, setTenth] = React.useState("");
+  const [change, setChange] = React.useState("");
+  const [submit, setSubmit] = React.useState("");
 
   const handleSelectClick = (e) => {
-    setValue(e.target.value);
+    setValue(!value);
   };
 
   function closeAlert() {
@@ -66,49 +78,104 @@ export default function ContactTable() {
     });
   }, []);
 
-  const handleIconClick = (e, data) => {
-    if (data === "first") {
-      setFirst(true);
-    } else if (data === "second") {
-      setSecond(true);
-    } else if (data === "third") {
-      setThird(true);
-    } else if (data === "fourth") {
-      setFourth(true);
-    } else if (data === "fifth") {
-      setFifth(true);
-    } else if (data === "sixth") {
-      setSixth(true);
-    } else if (data === "seventh") {
-      setSeventh(true);
-    } else if (data === "eighth") {
-      setEighth(true);
-    } else if (data === "nineth") {
-      setNineth(true);
-    } else if (data === "tenth") {
-      setTenth(true);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // setSubmit(change);
+    if (valueData === "First") {
+      setFirst(change);
+    } else if (valueData === "Second") {
+      setSecond(change);
+    } else if (valueData === "Third") {
+      setThird(change);
+    } else if (valueData === "Fourth") {
+      setFourth(change);
+    } else if (valueData === "Fifth") {
+      setFifth(change);
+    } else if (valueData === "Sixth") {
+      setSixth(change);
+    } else if (valueData === "Seventh") {
+      setSeventh(change);
+    } else if (valueData === "Eighth") {
+      setEighth(change);
+    } else if (valueData === "Nineth") {
+      setNineth(change);
+    } else if (valueData === "Tenth") {
+      setTenth(change);
     }
+    setOpen(false);
+  };
+
+  const handleChange = (e) => {
+    setChange(e.target.value);
+  };
+
+  // alert(change);
+
+  const handleIconClick = (e, data) => {
+    setOpen(true);
+    setValueData(data);
+    // if (data === "First") {
+    //   setFirst(true);
+    // } else if (data === "Second") {
+    //   setSecond(true);
+    // } else if (data === "Third") {
+    //   setThird(true);
+    // } else if (data === "Fourth") {
+    //   setFourth(true);
+    // } else if (data === "Fifth") {
+    //   setFifth(true);
+    // } else if (data === "Sixth") {
+    //   setSixth(true);
+    // } else if (data === "Seventh") {
+    //   setSeventh(true);
+    // } else if (data === "Eighth") {
+    //   setEighth(true);
+    // } else if (data === "Nineth") {
+    //   setNineth(true);
+    // } else if (data === "Tenth") {
+    //   setTenth(true);
+    // }
+  };
+
+  const handleClose = () => {
+    setOpen(false);
   };
 
   return (
     <div>
+      <Dialog
+        open={open}
+        onClose={handleClose}
+        // Transition={Transition}
+        className="p-3"
+      >
+        <DialogTitle>{valueData} Row Comment Input</DialogTitle>
+        <DialogContent>
+          <TextField onChange={handleChange} value={change} />
+        </DialogContent>
+        <DialogActions>
+          <Button type="submit" onClick={handleSubmit}>
+            Submit
+          </Button>
+        </DialogActions>
+      </Dialog>
       <table id="customersCreateNew">
         <tr>
           <th className="text-center">#</th>
-          <th className="text-center">Property Name</th>
-          <th className="text-center">Property Type</th>
+          <th className="text-center">Prospect Name</th>
+          <th className="text-center">Prospect Type</th>
           <th className="text-center">Company</th>
           <th className="text-center">Product of Interest</th>
           <th className="text-center">Expected Revenue</th>
-          <th className="text-center">Qualification Criteria</th>
+          <th className="text-center">Leads type</th>
           <th className="text-center">Probability</th>
         </tr>
         <tr>
           <td>
             <input
-              checked={value === "on"}
+              checked={value}
               onChange={handleSelectClick}
-              type="radio"
+              type="checkbox"
             />
           </td>
           <td>Alfreds Futterkiste</td>
@@ -120,21 +187,12 @@ export default function ContactTable() {
           <td>100%</td>
           <td className="open-ot-alert">
             <p style={{ float: "left" }}>1</p>
-            <div onClick={(e) => handleIconClick(e, "first")}>
-              <FiMessageSquare width="20" />
-            </div>
-            {first === true ? (
-              <div className="more-ot-alert">
-                <span onClick={closeAlert} className="close-ot-alert">
-                  <i className="fa fa-close"></i>
-                </span>
-                <p>
-                  There is more OT in the upcoming weeks. Scan your calendar to
-                  see it.
-                </p>
-              </div>
+            {valueData === "First" ? (
+              <div onClick={(e) => handleIconClick(e, "First")}>{first}</div>
             ) : (
-              ""
+              <div onClick={(e) => handleIconClick(e, "First")}>
+                <FiMessageSquare width="20" />
+              </div>
             )}
           </td>
           {/* first end */}
@@ -142,10 +200,9 @@ export default function ContactTable() {
         <tr>
           <td>
             <input
-              checked={value === "on"}
+              checked={value}
               onChange={handleSelectClick}
-              // value={value}
-              type="radio"
+              type="checkbox"
             />
           </td>
           <td>Maria Anders</td>
@@ -157,21 +214,12 @@ export default function ContactTable() {
           <td>100%</td>
           <td className="open-ot-alert">
             <p style={{ float: "left" }}>0.8</p>
-            <div onClick={(e) => handleIconClick(e, "second")}>
-              <FiMessageSquare width="20" />
-            </div>
-            {second === true ? (
-              <div className="more-ot-alert">
-                <span onClick={closeAlert} className="close-ot-alert">
-                  <i className="fa fa-close"></i>
-                </span>
-                <p>
-                  There is more OT in the upcoming weeks. Scan your calendar to
-                  see it.
-                </p>
-              </div>
+            {valueData === "Second" ? (
+              second
             ) : (
-              ""
+              <div onClick={(e) => handleIconClick(e, "Second")}>
+                <FiMessageSquare width="20" />
+              </div>
             )}
           </td>
           {/* second ends */}
@@ -179,10 +227,10 @@ export default function ContactTable() {
         <tr>
           <td>
             <input
-              checked={value === "on"}
+              checked={value}
               onChange={handleSelectClick}
               // value={value}
-              type="radio"
+              type="checkbox"
             />
           </td>
           <td>John Doe</td>
@@ -194,21 +242,12 @@ export default function ContactTable() {
           <td>100%</td>
           <td className="open-ot-alert">
             <p style={{ float: "left" }}>1</p>
-            <div onClick={(e) => handleIconClick(e, "third")}>
-              <FiMessageSquare width="20" />
-            </div>
-            {third === true ? (
-              <div className="more-ot-alert">
-                <span onClick={closeAlert} className="close-ot-alert">
-                  <i className="fa fa-close"></i>
-                </span>
-                <p>
-                  There is more OT in the upcoming weeks. Scan your calendar to
-                  see it.
-                </p>
-              </div>
+            {valueData === "Third" ? (
+              <div onClick={(e) => handleIconClick(e, "Third")}>{third}</div>
             ) : (
-              ""
+              <div onClick={(e) => handleIconClick(e, "Third")}>
+                <FiMessageSquare width="20" />
+              </div>
             )}
           </td>
           {/* third ends */}
@@ -216,10 +255,10 @@ export default function ContactTable() {
         <tr>
           <td>
             <input
-              checked={value === "on"}
+              checked={value}
               onChange={handleSelectClick}
               // value={value}
-              type="radio"
+              type="checkbox"
             />
           </td>
           <td>Mary Jane</td>
@@ -231,21 +270,12 @@ export default function ContactTable() {
           <td>100%</td>
           <td className="open-ot-alert">
             <p style={{ float: "left" }}>0.2</p>
-            <div onClick={(e) => handleIconClick(e, "fourth")}>
-              <FiMessageSquare width="20" />
-            </div>
-            {fourth === true ? (
-              <div className="more-ot-alert">
-                <span onClick={closeAlert} className="close-ot-alert">
-                  <i className="fa fa-close"></i>
-                </span>
-                <p>
-                  There is more OT in the upcoming weeks. Scan your calendar to
-                  see it.
-                </p>
-              </div>
+            {valueData === "Fourth" ? (
+              <div onClick={(e) => handleIconClick(e, "Fourth")}>{fourth}</div>
             ) : (
-              ""
+              <div onClick={(e) => handleIconClick(e, "Fourth")}>
+                <FiMessageSquare width="20" />
+              </div>
             )}
           </td>
           {/* fourth ends */}
@@ -253,10 +283,10 @@ export default function ContactTable() {
         <tr>
           <td>
             <input
-              checked={value === "on"}
+              checked={value}
               onChange={handleSelectClick}
               // value={value}
-              type="radio"
+              type="checkbox"
             />
           </td>
           <td>Mary Jane Volunters</td>
@@ -268,21 +298,12 @@ export default function ContactTable() {
           <td>100%</td>
           <td className="open-ot-alert">
             <p style={{ float: "left" }}>0.8</p>
-            <div onClick={(e) => handleIconClick(e, "fifth")}>
-              <FiMessageSquare width="20" />
-            </div>
-            {fifth === true ? (
-              <div className="more-ot-alert">
-                <span onClick={closeAlert} className="close-ot-alert">
-                  <i className="fa fa-close"></i>
-                </span>
-                <p>
-                  There is more OT in the upcoming weeks. Scan your calendar to
-                  see it.
-                </p>
-              </div>
+            {valueData === "Fifth" ? (
+              <div onClick={(e) => handleIconClick(e, "Fifth")}>{fifth}</div>
             ) : (
-              ""
+              <div onClick={(e) => handleIconClick(e, "Fifth")}>
+                <FiMessageSquare width="20" />
+              </div>
             )}
           </td>
           {/* fifth ends */}
@@ -290,10 +311,9 @@ export default function ContactTable() {
         <tr>
           <td>
             <input
-              checked={value === "on"}
+              checked={value}
               onChange={handleSelectClick}
-              // value={value}
-              type="radio"
+              type="checkbox"
             />
           </td>
           <td>Jane Doe</td>
@@ -305,21 +325,12 @@ export default function ContactTable() {
           <td>100%</td>
           <td className="open-ot-alert">
             <p style={{ float: "left" }}>1</p>
-            <div onClick={(e) => handleIconClick(e, "sixth")}>
-              <FiMessageSquare width="20" />
-            </div>
-            {sixth === true ? (
-              <div className="more-ot-alert">
-                <span onClick={closeAlert} className="close-ot-alert">
-                  <i className="fa fa-close"></i>
-                </span>
-                <p>
-                  There is more OT in the upcoming weeks. Scan your calendar to
-                  see it.
-                </p>
-              </div>
+            {valueData === "Sixth" ? (
+              <div onClick={(e) => handleIconClick(e, "Sixth")}>{sixth}</div>
             ) : (
-              ""
+              <div onClick={(e) => handleIconClick(e, "Sixth")}>
+                <FiMessageSquare width="20" />
+              </div>
             )}
           </td>
           {/* sixth ends */}
@@ -327,10 +338,10 @@ export default function ContactTable() {
         <tr>
           <td>
             <input
-              checked={value === "on"}
+              checked={value}
               onChange={handleSelectClick}
               // value={value}
-              type="radio"
+              type="checkbox"
             />
           </td>
           <td>Laughing Bacchus Winecellars</td>
@@ -342,21 +353,13 @@ export default function ContactTable() {
           <td>100%</td>
           <td className="open-ot-alert">
             <p style={{ float: "left" }}>1</p>
-            <div onClick={(e) => handleIconClick(e, "seventh")}>
-              <FiMessageSquare width="20" />
-            </div>
-            {seventh === true ? (
-              <div className="more-ot-alert">
-                <span onClick={closeAlert} className="close-ot-alert">
-                  <i className="fa fa-close"></i>
-                </span>
-                <p>
-                  There is more OT in the upcoming weeks. Scan your calendar to
-                  see it.
-                </p>
-              </div>
+            
+            {valueData === "Seventh" ? (
+              <div onClick={(e) => handleIconClick(e, "Seventh")}>{seventh}</div>
             ) : (
-              ""
+              <div onClick={(e) => handleIconClick(e, "Seventh")}>
+                <FiMessageSquare width="20" />
+              </div>
             )}
           </td>
           {/* seventh ends */}
@@ -364,10 +367,9 @@ export default function ContactTable() {
         <tr>
           <td>
             <input
-              checked={value === "on"}
+              checked={value}
               onChange={handleSelectClick}
-              // value={value}
-              type="radio"
+              type="checkbox"
             />
           </td>
           <td>Daniel Smart</td>
@@ -379,21 +381,12 @@ export default function ContactTable() {
           <td>100%</td>
           <td className="open-ot-alert">
             <p style={{ float: "left" }}>0.1</p>
-            <div onClick={(e) => handleIconClick(e, "eighth")}>
-              <FiMessageSquare width="20" />
-            </div>
-            {eighth === true ? (
-              <div className="more-ot-alert">
-                <span onClick={closeAlert} className="close-ot-alert">
-                  <i className="fa fa-close"></i>
-                </span>
-                <p>
-                  There is more OT in the upcoming weeks. Scan your calendar to
-                  see it.
-                </p>
-              </div>
+            {valueData === "Eighth" ? (
+              <div onClick={(e) => handleIconClick(e, "Eighth")}>{eighth}</div>
             ) : (
-              ""
+              <div onClick={(e) => handleIconClick(e, "Eighth")}>
+                <FiMessageSquare width="20" />
+              </div>
             )}
           </td>
           {/* eighth ends */}
@@ -401,10 +394,10 @@ export default function ContactTable() {
         <tr>
           <td>
             <input
-              checked={value === "on"}
+              checked={value}
               onChange={handleSelectClick}
               // value={value}
-              type="radio"
+              type="checkbox"
             />
           </td>
           <td>Dangote limited</td>
@@ -416,21 +409,12 @@ export default function ContactTable() {
           <td>100%</td>
           <td className="open-ot-alert">
             <p style={{ float: "left" }}>0.1</p>
-            <div onClick={(e) => handleIconClick(e, "nineth")}>
-              <FiMessageSquare width="20" />
-            </div>
-            {nineth === true ? (
-              <div className="more-ot-alert">
-                <span onClick={closeAlert} className="close-ot-alert">
-                  <i className="fa fa-close"></i>
-                </span>
-                <p>
-                  There is more OT in the upcoming weeks. Scan your calendar to
-                  see it.
-                </p>
-              </div>
+            {valueData === "Nineth" ? (
+              <div onClick={(e) => handleIconClick(e, "Nineth")}>{nineth}</div>
             ) : (
-              ""
+              <div onClick={(e) => handleIconClick(e, "Nineth")}>
+                <FiMessageSquare width="20" />
+              </div>
             )}
           </td>
           {/* ninth ends */}
@@ -438,10 +422,10 @@ export default function ContactTable() {
         <tr>
           <td>
             <input
-              checked={value === "on"}
+              checked={value}
               onChange={handleSelectClick}
               // value={value}
-              type="radio"
+              type="checkbox"
             />
           </td>
           <td>Paris spécialités</td>
@@ -453,21 +437,12 @@ export default function ContactTable() {
           <td>100%</td>
           <td className="open-ot-alert">
             <p style={{ float: "left" }}>0.1</p>
-            <div onClick={(e) => handleIconClick(e, "tenth")}>
-              <FiMessageSquare width="20" />
-            </div>
-            {tenth === true ? (
-              <div className="more-ot-alert">
-                <span onClick={closeAlert} className="close-ot-alert">
-                  <i className="fa fa-close"></i>
-                </span>
-                <p>
-                  There is more OT in the upcoming weeks. Scan your calendar to
-                  see it.
-                </p>
-              </div>
+            {valueData === "Tenth" ? (
+              <div onClick={(e) => handleIconClick(e, "Tenth")}>{tenth}</div>
             ) : (
-              ""
+              <div onClick={(e) => handleIconClick(e, "Tenth")}>
+                <FiMessageSquare width="20" />
+              </div>
             )}
           </td>
           {/* tenth ends */}

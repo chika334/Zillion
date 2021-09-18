@@ -4,17 +4,33 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { GiCheckMark } from "react-icons/gi";
 import SearchIpnut from "../SearchInput";
 import Filter from "../../filter";
+import { connect } from "react-redux";
+import { withRouter, useHistory } from "react-router-dom";
 
-export default function CreateNewTable() {
+function CreateNewTable() {
+  let history = useHistory();
   const [value, setValue] = React.useState(false);
+  const [order, setOrder] = React.useState("asc");
+  const [orderBy, setOrderBy] = React.useState("");
+  const [tableName, setTableName] = React.useState("");
 
   const handleSelectClick = (e) => {
     setValue(e.target.value);
   };
 
+  const arrayOfValues = ["Number", "Creation Date", "Customer", "Sales"];
+
+  const handleProps = (data) => {
+    setTableName(data);
+
+    const isAsc = orderBy === data && order === "asc";
+    setOrder(isAsc ? "desc" : "asc");
+    setOrderBy(data);
+  };
+
   return (
     <Container className="mt-3">
-      <span>
+      <span onClick={history.goBack}>
         <FontAwesomeIcon
           style={{ color: "#3c44b1", width: "50", height: "30" }}
           icon={["fas", "arrow-circle-left"]}
@@ -38,7 +54,7 @@ export default function CreateNewTable() {
         <Button className="mt-3" color="primary" variant="contained">
           Create New
         </Button>
-        <Filter />
+        <Filter arrayOfValues={arrayOfValues} onProp={handleProps} />
       </div>
       <table id="customersCreateNew">
         <tr>
@@ -167,3 +183,5 @@ export default function CreateNewTable() {
     </Container>
   );
 }
+
+export default withRouter(connect(null, null)(CreateNewTable));

@@ -87,6 +87,58 @@ export default function Index(props) {
                   </div>
                 </div>
               </div>
+              <div className="mt-3">
+                <div>
+                  <label style={{ float: "left" }} className="mt-3 mr-3">
+                    WhatsApp Number:
+                  </label>
+                  <div>
+                    <TextField
+                      style={{ width: "65%" }}
+                      onChange={(e) => handleChange(e, "WhatsAppNumber")}
+                      id="standard-basic"
+                      label="WhatsApp Number"
+                      name="WhatsAppNumber"
+                      value={
+                        values["WhatsAppNumber"] ? values["WhatsAppNumber"] : ""
+                      }
+                    />
+                  </div>
+                </div>
+              </div>
+              <div className="mt-3">
+                <div>
+                  <label style={{ float: "left" }} className="mt-3 mr-3">
+                    Instagram handle:
+                  </label>
+                  <div>
+                    <TextField
+                      style={{ width: "70%" }}
+                      onChange={(e) => handleChange(e, "instagram")}
+                      id="standard-basic"
+                      label="Instagram"
+                      name="instagram"
+                      value={values["instagram"] ? values["instagram"] : ""}
+                    />
+                  </div>
+                </div>
+              </div>
+              <div>
+                <div className="mt-3 mr-3">
+                  <label className="mr-3" style={{ float: "left" }}>
+                    Gender:{" "}
+                  </label>
+                  <select
+                    className=""
+                    style={{ width: "80%" }}
+                    onChange={(e) => handleChange(e, "gender")}
+                  >
+                    <option value="">Select gender</option>
+                    <option value="Mr">Male</option>
+                    <option value="Mrs">Female</option>
+                  </select>
+                </div>
+              </div>
               <div className="mt-3 allnew">
                 <div>
                   <label className="mt-3">Remarkable Days:</label>

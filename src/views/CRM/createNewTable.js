@@ -1,5 +1,19 @@
 import React from "react";
 import { GiCheckMark } from "react-icons/gi";
+import { Button, Dialog, DialogContent, DialogTitle } from "@material-ui/core";
+import dotIcons from "../../css/images/dotIcons.png";
+import parse from "html-react-parser";
+
+const headers = [
+  "Property Name",
+  "Property Type",
+  "Company",
+  "Product",
+  "Budget",
+  "Authority",
+  "Time",
+  "Total",
+];
 
 export default function CreateNewTable() {
   const [hoverOne, setHoverOne] = React.useState(false);
@@ -49,33 +63,164 @@ export default function CreateNewTable() {
   const [fourthHoverNine, setFourthHoverNine] = React.useState(false);
   const [fourthHoverTen, setFourthHoverTen] = React.useState(false);
 
-  const [value, setValue] = React.useState(false);
+  // const [value, setValue] = React.useState(false);
+  const [colour, setColour] = React.useState("");
+  const [addCol, setAddCol] = React.useState(false);
+  const [isChecked, setisChecked] = React.useState(false);
+  const [header, setHeader] = React.useState("");
 
   const handleSelectClick = (e) => {
-    setValue(e.target.value);
+    setisChecked(!isChecked);
+    setHoverOne(!hoverOne);
+    setHoverTwo(!hoverTwo);
+    setHoverThree(!hoverThree);
+    setHoverFour(!hoverFour);
+    setHoverFive(!hoverFive);
+    setHoverSix(!hoverSix);
+    setHoverSeven(!hoverSeven);
   };
+
+  const handleClosetwo = () => {
+    setAddCol(false);
+  };
+
+  React.useEffect(() => {
+    const total = document.getElementById("total").innerText;
+    // console.log(total);
+    isChecked === true && parseInt(total) > 60
+      ? setColour("green")
+      : isChecked == true && parseInt(total) > 45 && parseInt(total) < 60
+      ? setColour("yellow")
+      : setColour("red");
+  }, [isChecked === true]);
+
+  // console.log(isChecked);
+  const hanldeImageOnClick = () => {
+    setAddCol(true);
+  };
+
+  function generateTableRow(data) {
+    var emptyColumn = document.createElement("th");
+
+    emptyColumn.setAttribute("id", `${data}`);
+
+    emptyColumn.innerHTML = `<td class="valueId">${data}</td>`;
+
+    return emptyColumn;
+  }
+
+  function generateRow(data) {
+    var emptyColumn = document.createElement("td");
+    // <tr>
+
+    emptyColumn.setAttribute("id", `${data}`);
+
+    emptyColumn.innerHTML = `John Doe`;
+
+    return emptyColumn;
+  }
+
+  const AddColumn = (e, data) => {
+    document
+      .querySelector("table#customersCreateNew tr.tableHeader")
+      .append(generateTableRow(data));
+
+    document
+      .querySelector("tr#tableRow")
+      .append(generateRow(data));
+  };
+
+  const removeColumn = (e, data) => {
+    e.preventDefault();
+    var el = document.getElementById(`${data}`);
+
+    console.log(data);
+    console.log(el);
+    // el.remove();
+    // setIndexNumber(indexNumber--);
+  };
+
+  // const [tableArray, setTableArray] = React.useState([
+
+  // alert("daniel");
 
   return (
     <div>
+      <Button variant="contained" color="primary">
+        Save
+      </Button>
+      <Button variant="contained" color="primary">
+        Save & Send
+      </Button>
+      <img
+        src={dotIcons}
+        width="20"
+        style={{ cursor: "pointer" }}
+        className="ml-4"
+        onClick={hanldeImageOnClick}
+        alt="..."
+      />
+      <Dialog
+        open={addCol}
+        fullWidth
+        keepMounted
+        onClose={handleClosetwo}
+        aria-labelledby="alert-dialog-slide-title"
+        aria-describedby="alert-dialog-slide-description"
+        className="modalSend"
+      >
+        <DialogTitle className="text-center p-5">
+          <b className="underLineText">You can add column or remove one</b>
+        </DialogTitle>
+        <div>
+          {headers.map((allData, i) => (
+            <ul key={i}>
+              <li style={{ float: "left" }}>{allData}</li>
+              <Button onClick={(e) => AddColumn(e, allData)}>Add column</Button>
+              <Button onClick={(e) => removeColumn(e, allData)}>
+                Remove column
+              </Button>
+            </ul>
+          ))}
+        </div>
+      </Dialog>
       <table id="customersCreateNew">
-        <tr>
+        <tr className="tableHeader">
           <th className="text-center">#</th>
-          <th className="text-center">Property Name</th>
-          <th className="text-center">Property Type</th>
-          <th className="text-center">Company</th>
-          <th className="text-center">Product</th>
-          <th className="text-center">Budget</th>
-          <th className="text-center">Authority</th>
-          <th className="text-center">Time</th>
-          <th className="text-center">Total</th>
+          <th id="Prospect Name" contentEditable={true} className="text-center">
+            Prospect Name
+          </th>
+          <th id="Prospect Type" contentEditable={true} className="text-center">
+            Prospect Type
+          </th>
+          <th id="Company" contentEditable={true} className="text-center">
+            Company
+          </th>
+          <th id="Product" contentEditable={true} className="text-center">
+            Product
+          </th>
+          <th id="Budget" contentEditable={true} className="text-center">
+            Budget
+          </th>
+          <th id="Authority" contentEditable={true} className="text-center">
+            Authority
+          </th>
+          <th id="Time" contentEditable={true} className="text-center">
+            Time
+          </th>
+          <th id="Total" contentEditable={true} className="text-center">
+            Total
+          </th>
         </tr>
-        <tr>
+        {/* <tbody> */}
+        <tr id="tableRow">
           <td>
             <input
-              checked={value === "on"}
+              // checked={value === "on"}
               onChange={handleSelectClick}
               // value={value}
-              type="radio"
+              type="checkbox"
+              checked={isChecked}
             />
           </td>
           <td>Alfreds Futterkiste</td>
@@ -159,15 +304,23 @@ export default function CreateNewTable() {
             )}
           </td>
           {/* first end */}
-          <td>0</td>
+          <td>
+            {/* <tr> */}
+            <td id="total">100</td>
+            {/* </tr>
+    <tr> */}
+            <td style={{ backgroundColor: colour }}></td>
+            {/* </tr> */}
+          </td>
         </tr>
-        <tr>
+        <tr id="tableRow">
           <td>
             <input
-              checked={value === "on"}
+              // checked={value === "on"}
               onChange={handleSelectClick}
               // value={value}
-              type="radio"
+              type="checkbox"
+              checked={isChecked}
             />
           </td>
           <td>Maria Anders</td>
@@ -250,16 +403,18 @@ export default function CreateNewTable() {
               </>
             )}
           </td>
-          <td>0</td>
+          <td>
+            <td id="total">75</td>
+            <td style={{ backgroundColor: colour }}></td>
+          </td>
           {/* second ends */}
         </tr>
-        <tr>
+        <tr id="tableRow">
           <td>
             <input
-              checked={value === "on"}
               onChange={handleSelectClick}
-              // value={value}
-              type="radio"
+              type="checkbox"
+              checked={isChecked}
             />
           </td>
           <td>John Doe</td>
@@ -342,22 +497,23 @@ export default function CreateNewTable() {
               </>
             )}
           </td>
-          <td>0</td>
+          <td>
+            <td id="total">75</td>
+            <td style={{ backgroundColor: colour }}></td>
+          </td>
           {/* third ends */}
         </tr>
-        <tr>
+        <tr id="tableRow">
           <td>
             <input
-              checked={value === "on"}
               onChange={handleSelectClick}
-              // value={value}
-              type="radio"
+              type="checkbox"
+              checked={isChecked}
             />
           </td>
           <td>Mary Jane</td>
           <td>Individual</td>
           <td>MIC Teams</td>
-          {/* fourth */}
           <td
             onMouseEnter={() => {
               setHoverFour(true);
@@ -434,16 +590,20 @@ export default function CreateNewTable() {
               </>
             )}
           </td>
-          <td>0</td>
+          <td>
+            <td id="total">75</td>
+            <td style={{ backgroundColor: colour }}></td>
+          </td>
           {/* fourth ends */}
         </tr>
-        <tr>
+        <tr id="tableRow">
           <td>
             <input
-              checked={value === "on"}
+              // checked={value === "on"}
               onChange={handleSelectClick}
               // value={value}
-              type="radio"
+              type="checkbox"
+              checked={isChecked}
             />
           </td>
           <td>Mary Jane Volunters</td>
@@ -526,16 +686,20 @@ export default function CreateNewTable() {
               </>
             )}
           </td>
-          <td>0</td>
+          <td>
+            <td id="total">75</td>
+            <td style={{ backgroundColor: colour }}></td>
+          </td>
           {/* fifth ends */}
         </tr>
-        <tr>
+        <tr id="tableRow">
           <td>
             <input
-              checked={value === "on"}
+              // checked={value === "on"}
               onChange={handleSelectClick}
               // value={value}
-              type="radio"
+              type="checkbox"
+              checked={isChecked}
             />
           </td>
           <td>Jane Doe</td>
@@ -618,16 +782,20 @@ export default function CreateNewTable() {
               </>
             )}
           </td>
-          <td>0</td>
+          <td>
+            <td id="total">25</td>
+            <td style={{ backgroundColor: colour }}></td>
+          </td>
           {/* sixth ends */}
         </tr>
-        <tr>
+        <tr id="tableRow">
           <td>
             <input
-              checked={value === "on"}
+              // checked={value === "on"}
               onChange={handleSelectClick}
               // value={value}
-              type="radio"
+              type="checkbox"
+              checked={isChecked}
             />
           </td>
           <td>Laughing Bacchus Winecellars</td>
@@ -710,16 +878,20 @@ export default function CreateNewTable() {
               </>
             )}
           </td>
-          <td>0</td>
+          <td>
+            <td>0</td>
+            <td style={{ backgroundColor: colour }}></td>
+          </td>
           {/* seventh ends */}
         </tr>
-        <tr>
+        <tr id="tableRow">
           <td>
             <input
-              checked={value === "on"}
+              // checked={value === "on"}
               onChange={handleSelectClick}
               // value={value}
-              type="radio"
+              type="checkbox"
+              checked={isChecked}
             />
           </td>
           <td>Daniel Smart</td>
@@ -802,16 +974,20 @@ export default function CreateNewTable() {
               </>
             )}
           </td>
-          <td>0</td>
+          <td>
+            <td>0</td>
+            <td style={{ backgroundColor: colour }}></td>
+          </td>
           {/* eighth ends */}
         </tr>
-        <tr>
+        <tr id="tableRow">
           <td>
             <input
-              checked={value === "on"}
+              // checked={value === "on"}
               onChange={handleSelectClick}
               // value={value}
-              type="radio"
+              type="checkbox"
+              checked={isChecked}
             />
           </td>
           <td>Dangote limited</td>
@@ -894,16 +1070,20 @@ export default function CreateNewTable() {
               </>
             )}
           </td>
-          <td>0</td>
+          <td>
+            <td>0</td>
+            <td style={{ backgroundColor: colour }}></td>
+          </td>
           {/* ninth ends */}
         </tr>
-        <tr>
+        <tr id="tableRow">
           <td>
             <input
-              checked={value === "on"}
+              // checked={value === "on"}
               onChange={handleSelectClick}
               // value={value}
-              type="radio"
+              type="checkbox"
+              checked={isChecked}
             />
           </td>
           <td>Paris spécialités</td>
@@ -986,9 +1166,13 @@ export default function CreateNewTable() {
               </>
             )}
           </td>
-          <td>0</td>
+          <td>
+            <td>0</td>
+            <td style={{ backgroundColor: colour }}></td>
+          </td>
           {/* tenth ends */}
         </tr>
+        {/* </tbody> */}
       </table>
     </div>
   );

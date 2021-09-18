@@ -9,10 +9,10 @@ import { Table, LinearProgress, CardContent, Tooltip } from "@material-ui/core";
 import DateRangeIcon from "@material-ui/icons/DateRange";
 import { TextField, Card, Container, Button } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-import { DateRangePicker } from "react-date-range";
 import "react-date-range/dist/styles.css"; // main style file
 import "react-date-range/dist/theme/default.css"; // theme css file
 import "../../../css/ecommerce.css";
+import { DateRangePicker } from "react-date-range";
 import Popover from "@material-ui/core/Popover";
 import Typography from "@material-ui/core/Typography";
 // import Button from '@material-ui/core/Button';

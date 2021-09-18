@@ -84,6 +84,16 @@ function CreateNewTable() {
     setValue(e.target.value);
   };
 
+  const arrayOfValues = [
+    "Prospect Name",
+    "Prospect Type",
+    "Company",
+    "Product of Interest",
+    "Expected Revenue",
+    "Leads Type",
+    "probability",
+  ];
+
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -149,8 +159,8 @@ function CreateNewTable() {
   };
 
   const calendarsDisplay = () => {
-    setCalendar(true)
-  }
+    setCalendar(true);
+  };
 
   return (
     <div className="property-area pt-5">
@@ -211,7 +221,7 @@ function CreateNewTable() {
                 </div>
               </div>
             </div>
-            <Filter onProp={handleProps} />
+            <Filter arrayOfValues={arrayOfValues} onProp={handleProps} />
           </div>
         </div>
         <div>

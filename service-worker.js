@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/Zillion/precache-manifest.69b174551493b914c9b2b16fb4362d4f.js"
+  "/Zillion/precache-manifest.e3d04dc3b3b5b91b2d0bc75c81644752.js"
 );
 
 self.addEventListener('message', (event) => {

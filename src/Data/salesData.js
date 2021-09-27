@@ -26,6 +26,7 @@ export const SalesData = {
     {
       image: interswitch_logo,
       title: "Self Service",
+      url: "/sales/self-service",
       subtitle: "Give your customers all the freedom they need in your space",
     },
     {

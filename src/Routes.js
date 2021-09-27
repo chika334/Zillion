@@ -88,6 +88,10 @@ import CRMCreateNew from "./views/CRM/createNew";
 import Contact from "./views/CRM/Contact";
 import Qotation from "./views/CRM/Qotation";
 
+// self service
+import SelfService from "./views/selfService";
+import Request4PriceSetup from "./views/selfService/Setup/Request4PriceSetup";
+
 // company
 import CompanyNavbar from "./views/Company/navbar";
 import companyAbout from "./views/Company/about";
@@ -313,8 +317,15 @@ const defaultContainer = () => (
               component={CRMCreateNew}
             />
             <Route exact path="/sales/crm/contact" component={Contact} />
-
             <Route exact path="/sales/crm/quotation" component={Qotation} />
+
+            {/* self service */}
+            <Route exact path="/sales/self-service" component={SelfService} />
+            <Route
+              exact
+              path="/sales/self-service/rfp/setup"
+              component={Request4PriceSetup}
+            />
 
             {/*<Route
               exact

@@ -12,7 +12,12 @@ import Banner from "./otherDesigns/NewSearchInput";
 import InputBase from "@material-ui/core/InputBase";
 // import SearchIpnut from "./otherDesigns/searchInput";
 
+import { AllProducts } from "../../../api";
+
 function Index(props) {
+  //Testing Product API!
+  AllProducts(1, 10, 'services')
+
   let history = useHistory();
   const [order, setOrder] = React.useState("asc");
   const [orderBy, setOrderBy] = React.useState("");
